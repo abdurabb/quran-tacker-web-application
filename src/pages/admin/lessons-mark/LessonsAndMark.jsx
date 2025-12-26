@@ -243,7 +243,7 @@ function LessonsAndMark() {
                         {lesson?.name}
                       </h3>
                       <p className="text-xs text-gray-500 mt-1">
-                        {lesson?.criteriaNumber} {lesson?.lessonType?.name || '-'}
+                        {lesson?.criteriaNumber > 0 ? lesson?.criteriaNumber : ''} {lesson?.lessonType?.name  || '-'}
                       </p>
                     </div>
 
@@ -253,7 +253,7 @@ function LessonsAndMark() {
 
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-sm font-medium text-gray-700">
-                        Marks: {lesson?.mark || '0'}
+                        Marks: {lesson?.mark || '-'}
                       </span>
                     </div>
 

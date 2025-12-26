@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { format, parseISO } from "date-fns";
 
 function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
     const [isAdding, setIsAdding] = useState(false)
@@ -22,6 +23,10 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
+    const formatDate = (date) => {
+        if (!date) return "";
+        return format(parseISO(date), "dd/MM/yyyy"); // dd/MM/yyyy format
+    };
     const onSubmit = (e) => {
         e.preventDefault();
         setIsAdding(true)
@@ -110,7 +115,8 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                             type="date"
                             id="dob"
                             name="dob"
-                            value={form.dob}
+                            // value={form.dob}
+                            value={formatDate(form.dob)}
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -126,7 +132,8 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                             type="date"
                             id="joiningDate"
                             name="joiningDate"
-                            value={form.joiningDate}
+                            // value={form.joiningDate}
+                            value={formatDate(form.joiningDate)}
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"

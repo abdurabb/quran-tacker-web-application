@@ -30,14 +30,13 @@ function CollegeWebsite() {
   ];
 
   const courses = [
-    { name: "Academic", icon: "🔧" },
-    { name: "Quran Hifz", icon: "🏥" },
-    { name: "Sports Activities", icon: "💼" },
-    { name: "Islamic Manners", icon: "🎨" },
-    { name: "Social Activities", icon: "💻" },
-    { name: "Moral Activity", icon: "⚖️" }
+    { name: "Academic", icon: "📚" },        // Books for studying
+    { name: "Quran Hifz", icon: "📖" },      // Quran book
+    { name: "Sports Activities", icon: "🏅" }, // Medal or sports-related
+    { name: "Islamic Manners", icon: "🕌" },   // Mosque or Islamic symbol
+    { name: "Social Activities", icon: "🤝" }, // Handshake for socializing
+    { name: "Moral Activity", icon: "🕊️" }    // Dove for morals/ethics
   ];
-
 
 
   const organizations = [

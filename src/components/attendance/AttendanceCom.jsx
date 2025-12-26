@@ -194,7 +194,7 @@ function AttendanceCom({ classes, classId, attendanceRecords, totalPages, setCla
                                 >
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="flex-shrink-0 h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-xl font-bold">
+                                            <div className="flex-shrink-0 h-12 w-12 rounded-full bg-commonColorButton from-blue-500 to-blue-600 flex items-center justify-center text-white text-xl font-bold">
                                                 {record.studentId?.name?.charAt(0)?.toUpperCase() || 'N'}
                                             </div>
                                             <div>
@@ -282,8 +282,8 @@ function AttendanceCom({ classes, classId, attendanceRecords, totalPages, setCla
                                             <tr key={record._id} className="hover:bg-gray-50 transition-colors">
                                                 <td className="px-4 py-4 whitespace-nowrap">
                                                     <div className="flex items-center">
-                                                        <div className="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                                            <span className="text-blue-600 font-semibold">
+                                                        <div className="flex-shrink-0 h-10 w-10 rounded-full bg-commonColorButton flex items-center justify-center mr-3">
+                                                            <span className="text-white font-semibold">
                                                                 {record.studentId?.name?.charAt(0)?.toUpperCase() || 'N'}
                                                             </span>
                                                         </div>

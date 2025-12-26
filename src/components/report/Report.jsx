@@ -173,7 +173,7 @@ function Report({ startDate, setStartDate, endDate, setEndDate, classId, setClas
                         </label>
                         <button
                             onClick={toggleSort}
-                            className="w-full sm:w-auto flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                            className="w-full sm:w-auto flex items-center gap-2 px-4 py-2 bg-commonColorButton  text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                         >
                             <ArrowUpDown size={16} />
                             {sort === 1 ? 'Low to High' : 'High to Low'}
@@ -274,7 +274,7 @@ function Report({ startDate, setStartDate, endDate, setEndDate, classId, setClas
                                                 <td className="px-4 py-4 whitespace-nowrap">
                                                     <div className="flex items-center">
                                                         <div className="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                                            <span className="text-blue-600 font-semibold">
+                                                            <span className="text-commonColorButton font-semibold">
                                                                 {report?.name?.charAt(0)?.toUpperCase() || 'N'}
                                                             </span>
                                                         </div>
@@ -294,7 +294,7 @@ function Report({ startDate, setStartDate, endDate, setEndDate, classId, setClas
                                                 <td className="px-4 py-4 whitespace-nowrap text-center">
                                                     <button
                                                         onClick={() => handleViewDetails(report._id || report.studentId)}
-                                                        className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                                                        className="inline-flex items-center gap-2 px-3 py-1.5 bg-commonColorButton text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
                                                     >
                                                         <Eye size={16} />
                                                         View Details

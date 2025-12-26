@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../../redux/rootReducer";
+import { useNavigate } from "react-router-dom";
 
 
 function NavBar() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     return (
         <>
             <nav className={`fixed top-0 z-50 w-full   bg-white border-b border-gray-200 `}>

@@ -10,7 +10,7 @@ function CollegeWebsite() {
 
   const banners = [
     {
-      title: "Welcome to Amais",
+      title: "Welcome to Qaf Institute",
       subtitle: "Empowering Minds, Building Futures",
       image: "https://www.pullman-services.com/wp-content/uploads/2018/07/iStock-497747288_University_Aerial.jpg",
       link: "#admissions"
@@ -30,12 +30,12 @@ function CollegeWebsite() {
   ];
 
   const courses = [
-    { name: "Engineering", icon: "🔧" },
-    { name: "Medical Sciences", icon: "🏥" },
-    { name: "Business Administration", icon: "💼" },
-    { name: "Arts & Humanities", icon: "🎨" },
-    { name: "Computer Science", icon: "💻" },
-    { name: "Law", icon: "⚖️" }
+    { name: "Academic", icon: "🔧" },
+    { name: "Quran Hifz", icon: "🏥" },
+    { name: "Sports Activities", icon: "💼" },
+    { name: "Islamic Manners", icon: "🎨" },
+    { name: "Social Activities", icon: "💻" },
+    { name: "Moral Activity", icon: "⚖️" }
   ];
 
 
@@ -103,12 +103,12 @@ function CollegeWebsite() {
                 <div className="text-center text-white px-4">
                   <h2 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">{banner.title}</h2>
                   <p className="text-xl md:text-2xl mb-8 drop-shadow-md">{banner.subtitle}</p>
-                  <button
+                  {/* <button
                     onClick={(e) => e.stopPropagation()}
                     className="bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition text-lg shadow-lg"
                   >
                     Apply Now
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </a>
@@ -168,9 +168,9 @@ function CollegeWebsite() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-green-700 mb-6">About Ainul Maarif</h2>
+                <h2 className="text-4xl font-bold text-green-700 mb-6">About Qaf Institute</h2>
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  Established in 1985, Ainul Maarif College has been at the forefront of academic excellence
+                  Established in 2007, Ainul Maarif College has been at the forefront of academic excellence
                   and innovation. We are committed to providing world-class education that prepares students
                   for the challenges of tomorrow.
                 </p>
@@ -294,23 +294,23 @@ function CollegeWebsite() {
                     <MapPin className="text-green-600 mt-1" size={20} />
                     <div>
                       <h4 className="font-semibold text-gray-800">Address</h4>
-                      <p className="text-gray-600">123 Education Lane, Knowledge City, ST 12345</p>
+                      <p className="text-gray-600">Kannur - Kerala - India</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Phone className="text-green-600 mt-1" size={20} />
                     <div>
                       <h4 className="font-semibold text-gray-800">Phone</h4>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
-                      <p className="text-gray-600">+1 (555) 987-6543</p>
+                      <p className="text-gray-600">+91 7909199591</p>
+                      <p className="text-gray-600">+91 8129535993</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Mail className="text-green-600 mt-1" size={20} />
                     <div>
                       <h4 className="font-semibold text-gray-800">Email</h4>
-                      <p className="text-gray-600">info@greenvalley.edu</p>
-                      <p className="text-gray-600">admissions@greenvalley.edu</p>
+                      <p className="text-gray-600">info@maarif.com</p>
+                      <p className="text-gray-600">admissions@maarif.com</p>
                     </div>
                   </div>
                 </div>

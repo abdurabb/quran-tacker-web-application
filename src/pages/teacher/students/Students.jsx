@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../components/loader/Loader';
 import PageNation from '../../../components/pagination/Pagination';
-import { useGetStudents, useGetClasses } from '../../../apis/useTeacherDataController';
+import { useGetStudents, useGetClasses, useAddMark } from '../../../apis/useTeacherDataController';
 import AddMark from './AddMark';
 import { Modal } from '@mui/material';
 
@@ -18,13 +18,20 @@ function Students() {
   // apis
   const { data: classesData, isSuccess: isClassesSuccess, isLoading: classesLoading } = useGetClasses(page, limit, searchTerm);
   const { data: studentsData, isSuccess: isStudentsSuccess, isLoading: studentsLoading } = useGetStudents(classId, page, limit, searchTerm, { skip: !classId });
-
+  const { mutate: addMarkMutate, isSuccess: isAddingMarkSuccess, isPending: isAddingMark } = useAddMark();
 
   useEffect(() => {
     if (isStudentsSuccess) {
       setData(studentsData);
     }
   }, [isStudentsSuccess, studentsData, searchTerm]);
+
+  useEffect(() => {
+    if (isAddingMarkSuccess) {
+      alert('here')
+      toast.success('Mark added successfully!');
+    }
+  }, [isAddingMarkSuccess]);
 
   useEffect(() => {
     if (isClassesSuccess) {

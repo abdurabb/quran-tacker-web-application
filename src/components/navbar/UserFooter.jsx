@@ -9,7 +9,7 @@ function UserFooter() {
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid md:grid-cols-4 gap-8 mb-8">
                         <div>
-                            <h3 className="text-xl font-bold mb-4">Ainul Maarif</h3>
+                            <h3 className="text-xl font-bold mb-4">Qaf Institute</h3>
                             <p className="text-green-100 text-sm leading-relaxed">
                                 Empowering students with quality education and preparing them for a bright future since 1985.
                             </p>

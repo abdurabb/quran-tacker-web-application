@@ -57,7 +57,7 @@ function UserNavbar() {
                                 GV
                             </div>
                             <div>
-                                <h1 className="text-xl font-bold text-green-700">Ainul Maarif</h1>
+                                <h1 className="text-xl font-bold text-green-700">Qaf Institute</h1>
                                 <p className="text-xs text-gray-600">Excellence in Education</p>
                             </div>
                         </div>

@@ -17,7 +17,7 @@ function Students() {
   const [studentId, setStudentId] = useState('');
   // apis
   const { data: classesData, isSuccess: isClassesSuccess, isLoading: classesLoading } = useGetClasses(page, limit, searchTerm);
-  const { data: studentsData, isSuccess: isStudentsSuccess, isLoading: studentsLoading } = useGetStudents(classId, page, limit, searchTerm, { skip: !classId });
+  const { data: studentsData,refetch, isSuccess: isStudentsSuccess, isLoading: studentsLoading } = useGetStudents(classId, page, limit, searchTerm, { skip: !classId });
   const { mutate: addMarkMutate, isSuccess: isAddingMarkSuccess, isPending: isAddingMark } = useAddMark();
 
   useEffect(() => {
@@ -28,7 +28,6 @@ function Students() {
 
   useEffect(() => {
     if (isAddingMarkSuccess) {
-      alert('here')
       toast.success('Mark added successfully!');
     }
   }, [isAddingMarkSuccess]);
@@ -39,7 +38,7 @@ function Students() {
     }
   }, [isClassesSuccess]);
 
-
+ 
   const handleAddMarkClose = () => {
     setOpenAddMarkModal(false);
   };

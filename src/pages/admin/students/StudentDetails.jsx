@@ -46,6 +46,8 @@ function StudentDetails() {
         deleteMutate({ _id: studentId }, {
             onSuccess: (data) => {
                 toast.success(data?.message);
+                setOpenDeleteModal(false);
+                navigate('/students')
             }
         })
         setOpenDeleteModal(false);
@@ -117,7 +119,7 @@ function StudentDetails() {
                                     Back
                                 </button>
                                 <button
-                                    onClick={() => { alert('Edit') }}
+                                    onClick={() => { toast.info('Edit currently not available') }}
                                     className="flex items-center gap-1 px-3 py-1 bg-commonColorButton hover:bg-blue-900 text-white rounded text-sm"
                                 >
                                     <Pencil size={16} />

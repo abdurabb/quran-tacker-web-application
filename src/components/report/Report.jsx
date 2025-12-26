@@ -199,7 +199,7 @@ function Report({ startDate, setStartDate, endDate, setEndDate, classId, setClas
                                 >
                                     {/* Header Section */}
                                     <div className="flex items-center gap-4 mb-4 pb-4 border-b border-gray-200">
-                                        <div className="flex-shrink-0 h-14 w-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                                        <div className="flex-shrink-0 h-14 w-14 rounded-full bg-commonColorButton text-white flex items-center justify-center shadow-md">
                                             <span className="text-white font-bold text-xl">
                                                 {report?.name?.charAt(0)?.toUpperCase() || 'N'}
                                             </span>
@@ -221,7 +221,7 @@ function Report({ startDate, setStartDate, endDate, setEndDate, classId, setClas
                                         <div className="flex-1">
                                             <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">Total Marks</p>
                                             <div className="flex items-baseline gap-2">
-                                                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+                                                <p className="text-3xl font-bold  text-commonColorButton">
                                                     {report?.totalMark || 0}
                                                 </p>
                                                 <span className="text-sm text-gray-500 font-medium">marks</span>
@@ -229,7 +229,7 @@ function Report({ startDate, setStartDate, endDate, setEndDate, classId, setClas
                                         </div>
                                         <button
                                             onClick={() => handleViewDetails(report._id || report.studentId)}
-                                            className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
+                                            className="inline-flex items-center gap-2 px-5 py-3 bg-commonColorButton text-white  text-sm font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
                                         >
                                             <Eye size={18} />
                                             <span>View</span>

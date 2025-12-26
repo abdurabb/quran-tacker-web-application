@@ -17,7 +17,7 @@ function Students() {
   const [studentId, setStudentId] = useState('');
   // apis
   const { data: classesData, isSuccess: isClassesSuccess, isLoading: classesLoading } = useGetClasses(page, limit, searchTerm);
-  const { data: studentsData,refetch, isSuccess: isStudentsSuccess, isLoading: studentsLoading } = useGetStudents(classId, page, limit, searchTerm, { skip: !classId });
+  const { data: studentsData, refetch, isSuccess: isStudentsSuccess, isLoading: studentsLoading } = useGetStudents(classId, page, limit, searchTerm, { skip: !classId });
   const { mutate: addMarkMutate, isSuccess: isAddingMarkSuccess, isPending: isAddingMark } = useAddMark();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function Students() {
     }
   }, [isClassesSuccess]);
 
- 
+
   const handleAddMarkClose = () => {
     setOpenAddMarkModal(false);
   };
@@ -159,11 +159,26 @@ function Students() {
                       <td className="py-2 px-4 border-b border-gray-200 text-center">
                         <button
                           onClick={(e) => {
-                            e.stopPropagation()
-                            setOpenAddMarkModal(true)
-                            setStudentId(student?._id)
+                            e.stopPropagation();
+                            setOpenAddMarkModal(true);
+                            setStudentId(student?._id);
                           }}
-                          className="bg-commonColorButton text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-blue-900 transition-colors font-medium text-sm sm:text-base shadow-md hover:shadow-lg">Add Mark</button>
+                          className="
+    min-w-[90px]
+    bg-commonColorButton text-white
+    px-3 py-1.5 sm:px-5 sm:py-2
+    rounded-md
+    text-xs sm:text-sm
+    font-medium
+    hover:bg-blue-900
+    transition
+    focus:outline-none focus:ring-2 focus:ring-blue-400
+  "
+                        >
+                          Add Mark
+                        </button>
+
+
                       </td>
                     </tr>
                   ))

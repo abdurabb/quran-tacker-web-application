@@ -236,14 +236,21 @@ function StudentAddModal({ setClose, handleSubmit, type, student = {} }) {
                                             </>
 
                                         ) : (
-                                            <>
+                                            <div className="flex flex-col md:flex-row gap-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={setClose}
+                                                    className="w-full md:w-1/2 bg-gray-200 text-black font-medium py-2 rounded-md hover:bg-gray-300 transition-all"
+                                                >
+                                                    Cancel
+                                                </button>
                                                 <button
                                                     type="submit"
-                                                    className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
+                                                    className="w-full md:w-1/2 bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                                                 >
                                                     {type === 'Create' ? 'Add Student' : 'Update Student'}
                                                 </button>
-                                            </>
+                                            </div>
                                         )
                                     }
 

@@ -18,13 +18,13 @@ function CollegeWebsite() {
     {
       title: "World-Class Education",
       subtitle: "Join Our Academic Excellence Program",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1562774053-701939374585?w=1200&h=600&fit=crop",
       link: "#courses"
     },
     {
       title: "Modern Campus Facilities",
       subtitle: "State-of-the-Art Learning Environment",
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?w=1200&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&h=600&fit=crop",
       link: "#about"
     }
   ];

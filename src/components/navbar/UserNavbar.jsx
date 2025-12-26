@@ -30,7 +30,7 @@ function UserNavbar() {
         <>
             {/* Top Header Bar */}
             <div className="bg-green-600 text-white py-2 px-4 text-sm hidden md:block">
-                <div className="max-w-7xl mx-auto flex  items-center flex-wrap gap-2">
+                <div className="max-w-7xl mx-auto flex justify-between   flex-wrap gap-2">
                     <div className="flex items-center gap-4">
                         <span className="flex items-center gap-1">
                             <Phone size={14} /> +1 (555) 123-4567

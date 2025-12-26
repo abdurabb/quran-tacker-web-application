@@ -12,19 +12,19 @@ function CollegeWebsite() {
     {
       title: "Welcome to Amais",
       subtitle: "Empowering Minds, Building Futures",
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&h=600&fit=crop",
+      image: "https://www.pullman-services.com/wp-content/uploads/2018/07/iStock-497747288_University_Aerial.jpg",
       link: "#admissions"
     },
     {
       title: "World-Class Education",
       subtitle: "Join Our Academic Excellence Program",
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?w=1200&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1200&h=600&fit=crop",
       link: "#courses"
     },
     {
       title: "Modern Campus Facilities",
       subtitle: "State-of-the-Art Learning Environment",
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200&h=600&fit=crop",
       link: "#about"
     }
   ];

@@ -35,7 +35,7 @@ function AdminSideBar() {
             id="logo-sidebar"
             className={`fixed  top-0 left-0 z-30  w-64 h-screen pt-20 transition-transform 
              ${toggleSidebarState ? "translate-x-0" : "-translate-x-full"}
-          sm:translate-x-0 bg-[#EAEAEA]   `} // Use hidden and sm:block to control visibility
+          sm:translate-x-0 bg-white border-r border-gray-200   `} // Use hidden and sm:block to control visibility
             aria-label="Sidebar"
         >
             <Modal
@@ -66,14 +66,14 @@ function AdminSideBar() {
                             <div className="flex items-center">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g opacity="0.6">
-                                        <path d="M2.5 6.5C2.5 4.29086 4.29086 2.5 6.5 2.5C8.70914 2.5 10.5 4.29086 10.5 6.5C10.5 8.70914 8.70914 10.5 6.5 10.5C4.29086 10.5 2.5 8.70914 2.5 6.5Z" stroke="black" />
-                                        <path d="M13.5 17.5C13.5 15.2909 15.2909 13.5 17.5 13.5C19.7091 13.5 21.5 15.2909 21.5 17.5C21.5 19.7091 19.7091 21.5 17.5 21.5C15.2909 21.5 13.5 19.7091 13.5 17.5Z" stroke="black" />
-                                        <path d="M21.5 6.5C21.5 4.61438 21.5 3.67157 20.9142 3.08579C20.3284 2.5 19.3856 2.5 17.5 2.5C15.6144 2.5 14.6716 2.5 14.0858 3.08579C13.5 3.67157 13.5 4.61438 13.5 6.5C13.5 8.38562 13.5 9.32843 14.0858 9.91421C14.6716 10.5 15.6144 10.5 17.5 10.5C19.3856 10.5 20.3284 10.5 20.9142 9.91421C21.5 9.32843 21.5 8.38562 21.5 6.5Z" stroke="black" />
-                                        <path d="M10.5 17.5C10.5 15.6144 10.5 14.6716 9.91421 14.0858C9.32843 13.5 8.38562 13.5 6.5 13.5C4.61438 13.5 3.67157 13.5 3.08579 14.0858C2.5 14.6716 2.5 15.6144 2.5 17.5C2.5 19.3856 2.5 20.3284 3.08579 20.9142C3.67157 21.5 4.61438 21.5 6.5 21.5C8.38562 21.5 9.32843 21.5 9.91421 20.9142C10.5 20.3284 10.5 19.3856 10.5 17.5Z" stroke="black" />
+                                        <path d="M2.5 6.5C2.5 4.29086 4.29086 2.5 6.5 2.5C8.70914 2.5 10.5 4.29086 10.5 6.5C10.5 8.70914 8.70914 10.5 6.5 10.5C4.29086 10.5 2.5 8.70914 2.5 6.5Z" stroke={window.location.pathname === "/admin-home" ? "white" : "black"} />
+                                        <path d="M13.5 17.5C13.5 15.2909 15.2909 13.5 17.5 13.5C19.7091 13.5 21.5 15.2909 21.5 17.5C21.5 19.7091 19.7091 21.5 17.5 21.5C15.2909 21.5 13.5 19.7091 13.5 17.5Z" stroke={window.location.pathname === "/admin-home" ? "white" : "black"} />
+                                        <path d="M21.5 6.5C21.5 4.61438 21.5 3.67157 20.9142 3.08579C20.3284 2.5 19.3856 2.5 17.5 2.5C15.6144 2.5 14.6716 2.5 14.0858 3.08579C13.5 3.67157 13.5 4.61438 13.5 6.5C13.5 8.38562 13.5 9.32843 14.0858 9.91421C14.6716 10.5 15.6144 10.5 17.5 10.5C19.3856 10.5 20.3284 10.5 20.9142 9.91421C21.5 9.32843 21.5 8.38562 21.5 6.5Z" stroke={window.location.pathname === "/admin-home" ? "white" : "black"} />
+                                        <path d="M10.5 17.5C10.5 15.6144 10.5 14.6716 9.91421 14.0858C9.32843 13.5 8.38562 13.5 6.5 13.5C4.61438 13.5 3.67157 13.5 3.08579 14.0858C2.5 14.6716 2.5 15.6144 2.5 17.5C2.5 19.3856 2.5 20.3284 3.08579 20.9142C3.67157 21.5 4.61438 21.5 6.5 21.5C8.38562 21.5 9.32843 21.5 9.91421 20.9142C10.5 20.3284 10.5 19.3856 10.5 17.5Z" stroke={window.location.pathname === "/admin-home" ? "white" : "black"} />
                                     </g>
                                 </svg>
 
-                                <span className="font-thin ms-7">Dashboard</span>
+                                <span className={`${window.location.pathname === "/admin-home" ? "text-white" : "text-black"} font-thin ms-7`}>Dashboard</span>
                             </div>
                         </a>
                     </li>
@@ -94,7 +94,7 @@ function AdminSideBar() {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
-                                    stroke="currentColor"
+                                    stroke={window.location.pathname === "/class" ? "white" : "black"}
                                     className="w-6 h-6"
                                 >
                                     <path
@@ -103,7 +103,7 @@ function AdminSideBar() {
                                         d="M12 6v6m0 0l3-3m-3 3l-3-3m9 7.5v.75a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 17.25v-.75M12 3.75a8.25 8.25 0 018.25 8.25v3.75a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 15.75V12a8.25 8.25 0 017.5-8.25z"
                                     />
                                 </svg>
-                                <span className="font-thin ms-7">Class</span>
+                                <span className={`font-thin ms-7 ${window.location.pathname === "/class" ? "text-white" : "text-black"}`}>Class</span>
                             </div>
                         </a>
                     </li>
@@ -123,7 +123,7 @@ function AdminSideBar() {
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                     fill="none"
-                                    stroke="currentColor"
+                                    stroke={window.location.pathname === "/teachers" || window.location.pathname === "/teacher-details" ? "white" : "black"}
                                     strokeWidth="1.5"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -136,7 +136,7 @@ function AdminSideBar() {
                                     <circle cx="16" cy="18" r="1" />
                                 </svg>
 
-                                <span className="font-thin ms-7">Teachers</span>
+                                <span className={`font-thin ms-7 ${window.location.pathname === "/teachers" || window.location.pathname === "/teacher-details" ? "text-white" : "text-black"} `}>Teachers</span>
                             </div>
                         </a>
                     </li>
@@ -157,7 +157,7 @@ function AdminSideBar() {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
-                                    stroke="currentColor"
+                                    stroke={window.location.pathname === "/students" || window.location.pathname === "/student-details" ? "white" : "black"}
                                     className="w-6 h-6 text-black"
                                 >
                                     <path
@@ -172,7 +172,7 @@ function AdminSideBar() {
                                     />
                                 </svg>
 
-                                <span className="font-thin ms-7">Students</span>
+                                <span className={`font-thin ms-7 ${window.location.pathname === "/students" || window.location.pathname === "/student-details" ? "text-white" : "text-black"} `}>Students</span>
                             </div>
                         </a>
                     </li>
@@ -193,7 +193,7 @@ function AdminSideBar() {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
-                                    stroke="currentColor"
+                                    stroke={window.location.pathname === "/lessons-mark" ? "white" : "black"}
                                     className="w-6 h-6 text-black"
                                 >
                                     <path
@@ -209,7 +209,7 @@ function AdminSideBar() {
                                 </svg>
 
 
-                                <span className="font-thin ms-7">Lessons And Mark</span>
+                                <span className={`font-thin ms-7 ${window.location.pathname === "/lessons-mark" ? "text-white" : "text-black"} `}>Lessons And Mark</span>
                             </div>
                         </a>
                     </li>
@@ -218,7 +218,7 @@ function AdminSideBar() {
                     <li>
                         <a
                             href="#"
-                            className={`flex text-black items-center relative p-3 rounded-xl group w-full ${window.location.pathname === "/daily-reports" ? "bg-commonColor" : " "
+                            className={`flex text-black items-center relative p-3 rounded-xl group w-full ${window.location.pathname === "/daily-reports" || window.location.pathname === "/report-details" ? "bg-commonColor" : " "
                                 } `}
                             onClick={() => {
                                 handleChange('/daily-reports')
@@ -230,7 +230,7 @@ function AdminSideBar() {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
-                                    stroke="currentColor"
+                                    stroke={window.location.pathname === "/daily-reports" || window.location.pathname === "/report-details" ? "white" : "black"}
                                     className="w-6 h-6 text-black"
                                 >
                                     <path
@@ -246,39 +246,7 @@ function AdminSideBar() {
                                 </svg>
 
 
-                                <span className="font-thin ms-7">Daily Reports</span>
-                            </div>
-                        </a>
-                    </li>
-
-                    {/* monthly topper */}
-                    <li>
-                        <a
-                            href="#"
-                            className={`flex text-black items-center relative p-3 rounded-xl group w-full ${window.location.pathname === "/monthly-toper" ? "bg-commonColor" : " "
-                                } `}
-                            onClick={() => {
-                                handleChange('/monthly-toper')
-                            }}
-                        >
-                            <div className="flex items-center">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="w-6 h-6 text-black"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M15.75 2.25L12 6.75 8.25 2.25M12 6.75V12M12 12a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5z"
-                                    />
-                                </svg>
-
-
-                                <span className="font-thin ms-7">Monthly Topper</span>
+                                <span className={`font-thin ms-7 ${window.location.pathname === "/daily-reports" || window.location.pathname === "/report-details" ? "text-white" : "text-black"} `}>Daily Reports</span>
                             </div>
                         </a>
                     </li>
@@ -301,7 +269,7 @@ function AdminSideBar() {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
-                                    stroke="currentColor"
+                                    stroke={window.location.pathname === "/attendance" ? "white" : "black"}
                                     className="w-6 h-6 text-black"
                                 >
                                     <path
@@ -315,7 +283,7 @@ function AdminSideBar() {
                                         d="M9 13.5l1.5 1.5L15 10.5"
                                     />
                                 </svg>
-                                <span className="font-thin ms-7">Attendance</span>
+                                <span className={`font-thin ms-7 ${window.location.pathname === "/attendance" ? "text-white" : "text-black"} `}>Attendance</span>
                             </div>
                         </a>
                     </li>

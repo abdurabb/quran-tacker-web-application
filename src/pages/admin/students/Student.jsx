@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import { useAddStudent, useImageUpload, useGetStudents } from '../../../apis/useAdminDataController'
+import { useAddStudent, useImageUpload, useGetStudents, } from '../../../apis/useAdminDataController'
 import StudentAddModal from './StudentAddModal';
 import { Modal } from "@mui/material";
 import { toast } from 'react-toastify';
 import Loader from '../../../components/loader/Loader'
 import PageNation from '../../../components/pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
+import ClassAssignModal from './ClassAssignModal';
 
 
 
 function Students() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [classSearch, setClassSearch] = useState('')
   const [openAddModal, setOpenAddModal] = useState(false)
+  const [selectedStudentId, setSelectedStudentId] = useState(null)
+
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(10)
   const navigate = useNavigate()
@@ -20,6 +24,7 @@ function Students() {
   const { mutate: imageMutate, isPending: imagePending } = useImageUpload()
   const { data: studentAddData, isPending, mutate, error } = useAddStudent();
   const { data, isLoading } = useGetStudents(page, limit, searchTerm)
+
 
 
   // add 
@@ -36,7 +41,7 @@ function Students() {
           setIsAdding(false);
         },
         onError: (error) => {
-          toast.error(error?.response?.data?.message || "Failed to add student.");
+          // toast.error(error?.response?.data?.message || "Failed to add student.");
           setIsAdding(false);
         }
       });
@@ -64,6 +69,8 @@ function Students() {
     }
   }
 
+
+
   return (
     <div className="p-6">
 
@@ -76,13 +83,24 @@ function Students() {
         <StudentAddModal setClose={handleAddModalClose} handleSubmit={handleSubmit} type={'Create'} />
       </Modal>
 
+      {/* class change  */}
+      <Modal
+        open={selectedStudentId}
+        onClose={() => setSelectedStudentId(false)}
+        className="flex items-center justify-center p-4 outline-none"
+      >
+
+        <ClassAssignModal selectedStudentId={selectedStudentId} setSelectedStudentId={setSelectedStudentId} />
+      </Modal>
+
+
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Students</h1>
         <button
           onClick={() => {
             setOpenAddModal(true)
           }}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-commonColorButton text-white px-4 py-2 rounded hover:bg-blue-900"
         >
           + Add New Student
         </button>
@@ -114,10 +132,10 @@ function Students() {
             <table className="min-w-full bg-white rounded shadow text-sm">
               <thead>
                 <tr>
-                  <th className="py-2 px-4 border-b text-left">Name</th>
-                  <th className="py-2 px-4 border-b text-left hidden md:table-cell">Phone</th>
-                  <th className="py-2 px-4 border-b text-left">Class</th>
-                  <th className="py-2 px-4 border-b text-center">Class Action</th>
+                  <th className="py-2 px-4 border-b border-gray-200 text-left">Name</th>
+                  <th className="py-2 px-4 border-b border-gray-200 text-left hidden md:table-cell">Phone</th>
+                  <th className="py-2 px-4 border-b border-gray-200 text-left">Class</th>
+                  <th className="py-2 px-4 border-b border-gray-200 text-center">Class Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -128,7 +146,7 @@ function Students() {
                         navigate(`/student-details?hashId=${student?._id}`)
                       }}
                       key={student?._id} className="hover:bg-gray-50 transition hover:cursor-pointer">
-                      <td className="py-2 px-4 border-b">
+                      <td className="py-2 px-4 border-b border-gray-200">
                         <div className="flex items-center gap-3">
                           <img
                             src={
@@ -138,33 +156,35 @@ function Students() {
                             alt={student?.name}
                             className="w-8 h-8 rounded-full object-cover hidden md:table-cell"
                           />
-                          <span className="font-medium">{student?.name}</span>
+                          <span className="font-medium text-sm md:text-medium">{student?.name}</span>
                         </div>
                       </td>
 
-                      <td className="py-2 px-4 border-b hidden md:table-cell">
+                      <td className="py-2 px-4 border-b border-gray-200 hidden md:table-cell text-sm md:text-medium">
                         {student?.dialCode}-{student?.phone}
                       </td>
 
-                      <td className="py-2 px-4 border-b">
+                      <td className="py-2 px-4 border-b border-gray-200">
                         {student?.class ? (
                           student?.class
                         ) : (
-                          <span className="text-red-400 font-medium">Class not Added</span>
+                          <span className="text-red-400  text-sm md:text-medium">Class not Added</span>
                         )}
                       </td>
 
-                      <td className="py-2 px-4 border-b text-center">
+                      <td className="py-2 px-4 border-b border-gray-200 text-center">
                         <button
                           onClick={(e) => {
                             e.stopPropagation()
+                            setSelectedStudentId(student?._id)
                           }}
-                          className={`${student.class ? "bg-blue-600 hover:bg-blue-700" : "bg-green-600 hover:bg-green-700"
-                            } text-white text-[10px] px-1.5 py-0.5 rounded 
-              sm:text-xs sm:px-2 sm:py-1 
-              md:text-sm md:px-3 md:py-1.5`}
+                          className={`${student.class ? "bg-commonColorButton hover:bg-blue-900" : "bg-green-600 hover:bg-green-700"
+                            } text-white text-xs px-2 py-1.5 rounded whitespace-nowrap
+              sm:text-sm sm:px-3 sm:py-2 
+              md:text-base md:px-2 md:py-1`}
                         >
-                          {student.class ? "+ Change Class" : "+ Add Class"}
+                          <span className="hidden sm:inline">{student.class ? "+ Change Class" : "+ Add Class"}</span>
+                          <span className="sm:hidden">{student.class ? "Change" : "Add"}</span>
                         </button>
                       </td>
                     </tr>

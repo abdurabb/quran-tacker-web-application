@@ -95,7 +95,7 @@ function Teacher() {
               setOpenAddModal(true)
             }}
 
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-commonColorButton text-white px-4 py-2 rounded hover:bg-blue-900"
           >
             + Add  Teacher
           </button>
@@ -119,17 +119,17 @@ function Teacher() {
               <table className="min-w-full bg-white rounded shadow text-sm">
                 <thead>
                   <tr>
-                    <th className="py-2 px-4 border-b text-left">Name</th>
-                    <th className="py-2 px-4 border-b text-left hidden md:table-cell">Email</th>
-                    <th className="py-2 px-4 border-b text-left hidden md:table-cell">Phone</th>
-                    <th className="py-2 px-4 border-b text-center">Actions</th>
+                    <th className="py-2 px-4 border-b border-gray-200 text-left">Name</th>
+                    <th className="py-2 px-4 border-b border-gray-200 text-left hidden md:table-cell">Email</th>
+                    <th className="py-2 px-4 border-b border-gray-200 text-left hidden md:table-cell">Phone</th>
+                    <th className="py-2 px-4 border-b border-gray-200 text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data?.teachers?.length > 0 ? (
                     data.teachers.map((teacher) => (
                       <tr key={teacher.id} className="hover:bg-gray-50 transition">
-                        <td className="py-2 px-4 border-b">
+                        <td className="py-2 px-4 border-b border-gray-200">
                           <div className="flex items-center gap-3">
                             <img
                               src={
@@ -143,18 +143,18 @@ function Teacher() {
                           </div>
                         </td>
 
-                        <td className="py-2 px-4 border-b hidden md:table-cell">
+                        <td className="py-2 px-4 border-b border-gray-200 hidden md:table-cell">
                           {teacher?.email}
                         </td>
 
-                        <td className="py-2 px-4 border-b hidden md:table-cell">
+                        <td className="py-2 px-4 border-b border-gray-200 hidden md:table-cell">
                           {teacher?.dialCode}-{teacher?.phone}
                         </td>
 
-                        <td className="py-2 px-4 border-b text-center">
+                        <td className="py-2 px-4 border-b border-gray-200 text-center">
                           <button
                             onClick={() => navigate(`/teacher-details?hashId=${teacher?._id}`)}
-                            className="text-blue-600 hover:underline text-xs md:text-sm"
+                            className="text-blue-900 hover:underline text-xs md:text-sm"
                           >
                             Go to Details
                           </button>

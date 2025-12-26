@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from "@mui/material";
 import { toast } from 'react-toastify';
 import ConfirmationModal from '../../../components/confirmationModal/ConfirmationModal'
-import { useUpdateTeacher, useDeleteTeacher, useGetTeacherDetails, useGetAllClasses, useAssignClass, useImageUpload } from '../../../apis/useAdminDataController'
+import { useUpdateTeacher, useDeleteTeacher, useGetTeacherDetails, useGetAllClasses, useAssignClass, useImageUpload, useGetStudents } from '../../../apis/useAdminDataController'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import TeacherModal from './TeacherModal';
 import Select from 'react-select';
@@ -13,14 +13,15 @@ import PageNation from '../../../components/pagination/Pagination';
 function TeacherDetails({ teacher, onEdit, onDelete }) {
   const [searchParams] = useSearchParams();
   const hashId = searchParams.get('hashId');
-  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedClass, setSelectedClass] = useState({});
   const [students, setStudents] = useState([]);
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [openAddModal, setOpenAddModal] = useState(false)
   const [allClasses, setAllClasses] = useState([]);
   const [selectedClassId, setSelectedClassId] = useState('');
   const [search, setSearch] = useState('')
-
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(10)
   const navigate = useNavigate()
 
   const { data, isLoading } = useGetTeacherDetails(hashId)
@@ -29,7 +30,19 @@ function TeacherDetails({ teacher, onEdit, onDelete }) {
   const { data: assignTeacher, isPending: assignPending, mutate: assignMutate, error: assignError } = useAssignClass();
   const { data: teacherUpdateData, isPending: teacherUpdatePending, mutate: updateMutate, error: updateError } = useUpdateTeacher();
   const { mutate: imageMutate, isPending: imagePending } = useImageUpload()
+  const { data: studentsData, isLoading: studentsLoading } = useGetStudents(page, limit, search, selectedClass?._id, {
+    enabled: !!selectedClass?._id || !!selectedClass?.length
+  })
 
+  // to proper case
+  const toProperCase = (text) => {
+    if (!text) return "";
+    return text
+      .toLowerCase()
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   // delete Class
   const handleClose = () => {
@@ -128,7 +141,7 @@ function TeacherDetails({ teacher, onEdit, onDelete }) {
 
   useEffect(() => {
     if (Array.isArray(classes) && classes.length > 0) {
-      setSelectedClass(classes[0]?._id)
+      setSelectedClass(classes[0])
     }
   }, [classes])
 
@@ -177,7 +190,7 @@ function TeacherDetails({ teacher, onEdit, onDelete }) {
                 onClick={() => {
                   navigate('/teachers');
                 }}
-                className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                className="flex items-center gap-2 bg-commonColorButton text-white px-4 py-2 rounded hover:bg-blue-900"
               >
                 {/* Back Arrow Icon */}
                 <svg
@@ -276,8 +289,8 @@ function TeacherDetails({ teacher, onEdit, onDelete }) {
                   classes.map((cls, i) => (
                     <button
                       key={i}
-                      onClick={() => setSelectedClass(cls?._id)}
-                      className={`px-4 py-2 rounded-full border ${selectedClass === cls?._id ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 hover:bg-blue-100'}`}
+                      onClick={() => setSelectedClass(cls)}
+                      className={`px-4 py-2 rounded-lg border ${selectedClass?._id === cls?._id ? 'bg-commonColorButton text-white' : 'bg-gray-100 text-gray-800 hover:bg-blue-100'}`}
                     >
                       {cls?.name}
                     </button>
@@ -289,33 +302,45 @@ function TeacherDetails({ teacher, onEdit, onDelete }) {
             </div>
 
             {/* Students */}
-            {/* {selectedClass && (
-        <div className="mt-8">
-          <h2 className="text-lg font-semibold mb-3">Students in {selectedClass}</h2>
-          {students?.length > 0 ? (
-            <table className="w-full table-auto border-collapse">
-              <thead>
-                <tr className="bg-gray-100 text-left">
-                  <th className="p-2 border">#</th>
-                  <th className="p-2 border">Name</th>
-                  <th className="p-2 border">Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((student, idx) => (
-                  <tr key={student._id}>
-                    <td className="p-2 border">{idx + 1}</td>
-                    <td className="p-2 border">{student.name}</td>
-                    <td className="p-2 border">{student.email}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p className="text-gray-500">No students found in this class.</p>
-          )}
-        </div>
-      )} */}
+            {(studentsData && studentsData?.students?.length > 0 && !studentsLoading) ? (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold mb-3">{toProperCase(`${selectedClass?.name} Students`)}</h2>
+                {studentsData?.students?.length > 0 ? (
+                  <table className="w-full table-auto border-gray-200">
+                    <thead>
+                      <tr className="bg-gray-100 text-left">
+                        <th className="p-2 text-center text-sm border border-gray-200">No.</th>
+                        <th className="p-2 text-center text-sm border border-gray-200">Name</th>
+                        <th className="p-2 text-center text-sm border border-gray-200">Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {studentsData?.students?.map((student, idx) => (
+                        <tr key={student._id}>
+                          <td className="p-2 border text-center text-sm border-gray-200">{idx + 1}</td>
+                          <td className="p-2 border text-center text-sm border-gray-200">{student.name}</td>
+                          <td className="p-2 border text-center text-sm border-gray-200">{student.email}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+
+                    {studentsData?.totalPages > 1 ? (<>
+                      <div className='p-2 '>
+                        <PageNation totalPage={studentsData?.totalPages} setPage={setPage} />
+                      </div>
+                    </>) : ""}
+
+                  </table>
+                ) : (
+                  <p className="text-gray-500">No students found in this class.</p>
+                )}
+              </div>
+            ) : (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold mb-3">No students assigned to this class.</h2>
+              </div>
+            )
+            }
           </>
         )
       }

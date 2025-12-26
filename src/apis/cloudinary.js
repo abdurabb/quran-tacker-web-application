@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const cloudName = "dqtxqq4sn";
+const cloudName = "dulx5ho9t";
 const uploadPreset = "upload";
 
 const uploadFile = async (file, onProgress) => {

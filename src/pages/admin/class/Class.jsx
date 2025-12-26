@@ -23,7 +23,7 @@ function Class() {
   const [search, setSearch] = useState('')
 
   // apis
-  const { data, isLoading } = useGetClasses(page, limit, search)
+  const { data, refetch, isLoading } = useGetClasses(page, limit, search)
   const { data: classAddData, isPending, mutate, error } = useAddClass();
   const { data: classDeleteData, isPending: deletePending, mutate: deleteMutate, error: deleteError } = useDeleteClass();
   const { data: classUpdateData, isPending: couponUpdatePending, mutate: updateMutate, error: updateError } = useUpdateClass();
@@ -114,7 +114,7 @@ function Class() {
         onClose={() => setOpenDetailModal(false)}
         className="flex items-center justify-center p-4 outline-none"
       >
-        <ClassDetailModal setClose={() => { setOpenDetailModal(false) }} handleSubmit={handleAssignTeacher} classData={classData} />
+        <ClassDetailModal setClose={() => { setOpenDetailModal(false) }} handleSubmit={handleAssignTeacher} classData={classData} refetch={refetch} />
       </Modal>
 
       {/* open delete confirmation modal */}
@@ -145,7 +145,7 @@ function Class() {
               setType('Create');
               setOpenAddModal(true);
             }}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 whitespace-nowrap"
+            className="bg-commonColorButton text-white px-4 py-2 rounded hover:bg-blue-900 whitespace-nowrap"
           >
             + Add New Class
           </button>
@@ -166,67 +166,140 @@ function Class() {
           </>
         ) : (
           <>
-            <table className="min-w-full bg-white rounded shadow">
-              <thead>
-                <tr>
-                  <th className="py-2 px-4 border-b text-left">Class Name</th>
-                  <th className="py-2 px-4 border-b text-left hidden md:table-cell">Description</th>
-                  <th className="py-2 px-4 border-b text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.classes?.length >= 1 ? (
-                  data.classes.map((cls) => (
-                    <tr
-                      key={cls.id}
-                      className="hover:bg-gray-50 transition cursor-pointer"
-                      onClick={() => {
-                        setClassData(cls);
-                        setOpenDetailModal(true);
-                      }}
-                    >
-                      <td className="py-2 px-4 border-b">{cls?.name}</td>
-                      <td className="py-2 px-4 border-b hidden md:table-cell">{cls?.description}</td>
-                      <td className="py-2 px-4 border-b text-center">
-                        <div className="flex justify-center gap-2">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setId(cls?._id);
-                              setName(cls?.name);
-                              setDescription(cls?.description);
-                              setType('Update');
-                              setOpenAddModal(true);
-                            }}
-                            className="bg-yellow-500 text-white text-xs md:text-sm px-2 md:px-3 py-1 rounded hover:bg-yellow-600"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setId(cls?._id);
-                              setName(cls?.name);
-                              setType('Delete');
-                              setOpenDeleteModal(true);
-                            }}
-                            className="bg-red-600 text-white text-xs md:text-sm px-2 md:px-3 py-1 rounded hover:bg-red-700"
-                          >
-                            Delete
-                          </button>
-                        </div>
+            <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
+              <table className="min-w-full text-sm">
+                <thead className="bg-gray-50 text-gray-600 uppercase text-xs">
+                  <tr>
+                    <th className="px-4 py-3 text-left">Class</th>
+                    <th className="px-4 py-3 text-left">Description</th>
+                    <th className="px-4 py-3 text-center">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {data?.classes?.length >= 1 ? (
+                    data.classes.map((cls) => (
+                      <tr
+                        key={cls._id}
+                        className="border-b hover:bg-gray-50 transition cursor-pointer"
+                        onClick={() => {
+                          setClassData(cls);
+                          setOpenDetailModal(true);
+                        }}
+                      >
+                        <td className="px-4 py-3">
+                          <p className="font-medium text-gray-800">{cls?.name}</p>
+                        </td>
+
+                        <td className="px-4 py-3 text-gray-600">
+                          {cls?.description || '—'}
+                        </td>
+
+                        <td className="px-4 py-3">
+                          <div className="flex justify-center gap-2">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setId(cls?._id);
+                                setName(cls?.name);
+                                setDescription(cls?.description);
+                                setType('Update');
+                                setOpenAddModal(true);
+                              }}
+                              className="px-3 py-1.5 text-xs font-medium rounded-md
+                             bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition"
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setId(cls?._id);
+                                setName(cls?.name);
+                                setType('Delete');
+                                setOpenDeleteModal(true);
+                              }}
+                              className="px-3 py-1.5 text-xs font-medium rounded-md
+                             bg-red-100 text-red-700 hover:bg-red-200 transition"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="3" className="text-center py-6 text-gray-500">
+                        No classes found
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="3" className="text-center py-4 text-gray-500">
-                      No classes found.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+
+            {/* mobile view */}
+            <div className="md:hidden space-y-4">
+              {data?.classes?.length >= 1 ? (
+                data.classes.map((cls) => (
+                  <div
+                    key={cls._id}
+                    onClick={() => {
+                      setClassData(cls);
+                      setOpenDetailModal(true);
+                    }}
+                    className="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition cursor-pointer"
+                  >
+                    <div className="mb-2">
+                      <h3 className="font-semibold text-gray-800">{cls?.name}</h3>
+                      <p className="text-sm text-gray-600 mt-1">
+                        {cls?.description || 'No description available'}
+                      </p>
+                    </div>
+
+                    <div className="flex gap-3 mt-4">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setId(cls?._id);
+                          setName(cls?.name);
+                          setDescription(cls?.description);
+                          setType('Update');
+                          setOpenAddModal(true);
+                        }}
+                        className="flex-1 px-3 py-2 text-sm font-medium rounded-lg
+                       bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition"
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setId(cls?._id);
+                          setName(cls?.name);
+                          setType('Delete');
+                          setOpenDeleteModal(true);
+                        }}
+                        className="flex-1 px-3 py-2 text-sm font-medium rounded-lg
+                       bg-red-100 text-red-700 hover:bg-red-200 transition"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-6 text-gray-500">
+                  No classes found
+                </div>
+              )}
+            </div>
+
+
 
           </>
         )

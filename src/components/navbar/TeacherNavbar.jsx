@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleTeacherSidebar } from "../../redux/rootReducer";
+import { useNavigate } from "react-router-dom";
 
 
 function TeacherNavbar() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     return (
         <>
-            <nav className={`fixed top-0 z-50 w-full   bg-background `}>
+            <nav className={`fixed top-0 z-50 w-full   bg-white border-b border-gray-200 `}>
                 <div className="px-3 py-3 lg:px-5 lg:pl-3 h-14 lg:h-18  flex justify-between ">
                     {/* <Notification /> */}
                     <div className="flex items-center justify-between">
@@ -47,7 +49,27 @@ function TeacherNavbar() {
                         <div class="flex items-end ">
                             {/* Icons */}
                             <ul className="flex">
-                                <li>findzyyAdmin@gmail.com</li>
+                                <button
+                                    onClick={() => {
+                                        navigate('/')
+                                    }}
+                                    className="bg-commonColor text-white px-4 py-2 rounded hover:bg-commonColor/80">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-6 h-6"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M2.25 12 11.204 3.5a1.5 1.5 0 0 1 1.592 0L21.75 12M4.5 9.75V19.5A1.5 1.5 0 0 0 6 21h4.5v-4.5A1.5 1.5 0 0 1 12 15h0a1.5 1.5 0 0 1 1.5 1.5V21H18a1.5 1.5 0 0 0 1.5-1.5V9.75"
+                                        />
+                                    </svg>
+
+                                </button>
                             </ul>
                         </div>
                     </div>

@@ -191,7 +191,7 @@ function StudentAddModal({ setClose, handleSubmit, type, student = {} }) {
                                     <div className="flex items-center gap-4">
                                         <label
                                             htmlFor="image"
-                                            className="cursor-pointer inline-block bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+                                            className="cursor-pointer inline-block bg-commonColorButton text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-900 transition duration-200"
                                         >
                                             Choose File
                                         </label>
@@ -229,7 +229,7 @@ function StudentAddModal({ setClose, handleSubmit, type, student = {} }) {
                                             <>
                                                 <button
                                                     type=""
-                                                    className="w-full bg-blue-900 text-white font-medium py-2 rounded-md hover:bg-blue-800 transition-all"
+                                                    className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                                                 >
                                                     Adding ....
                                                 </button>
@@ -239,7 +239,7 @@ function StudentAddModal({ setClose, handleSubmit, type, student = {} }) {
                                             <>
                                                 <button
                                                     type="submit"
-                                                    className="w-full bg-blue-900 text-white font-medium py-2 rounded-md hover:bg-blue-800 transition-all"
+                                                    className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                                                 >
                                                     {type === 'Create' ? 'Add Student' : 'Update Student'}
                                                 </button>

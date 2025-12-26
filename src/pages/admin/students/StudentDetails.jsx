@@ -6,6 +6,7 @@ import { useGetStudentDetails, useDeleteStudent } from '../../../apis/useAdminDa
 import ConfirmationModal from '../../../components/confirmationModal/ConfirmationModal'
 import { Modal } from "@mui/material";
 import { toast } from 'react-toastify';
+import ClassAssignModal from './ClassAssignModal';
 
 
 function StudentDetails() {
@@ -13,6 +14,7 @@ function StudentDetails() {
     const [searchParams] = useSearchParams();
     const studentId = searchParams.get('hashId');
     const [openDeleteModal, setOpenDeleteModal] = useState(false)
+    const [selectedStudentId, setSelectedStudentId] = useState(null)
 
     // apis
     const { data, isLoading } = useGetStudentDetails(studentId)
@@ -81,6 +83,16 @@ function StudentDetails() {
                     confirmFunction={confirmFunction} type={'delete'} />
             </Modal>
 
+            {/* class change  */}
+            <Modal
+                open={selectedStudentId}
+                onClose={() => setSelectedStudentId(false)}
+                className="flex items-center justify-center p-4 outline-none"
+            >
+
+                <ClassAssignModal selectedStudentId={selectedStudentId} setSelectedStudentId={setSelectedStudentId} />
+            </Modal>
+
             {
                 isLoading ? (
                     <>
@@ -106,7 +118,7 @@ function StudentDetails() {
                                 </button>
                                 <button
                                     onClick={() => { alert('Edit') }}
-                                    className="flex items-center gap-1 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm"
+                                    className="flex items-center gap-1 px-3 py-1 bg-commonColorButton hover:bg-blue-900 text-white rounded text-sm"
                                 >
                                     <Pencil size={16} />
                                     Edit
@@ -156,9 +168,11 @@ function StudentDetails() {
                         {/* Class Action */}
                         <div className="mt-6 text-right">
                             <button
-                                onClick={() => { }}
+                                onClick={() => {
+                                    setSelectedStudentId(studentId)
+                                }}
                                 className={`px-4 py-2 rounded text-white text-sm ${classId
-                                    ? 'bg-blue-600 hover:bg-blue-700'
+                                    ? 'bg-commonColorButton hover:bg-blue-900'
                                     : 'bg-green-600 hover:bg-green-700'
                                     }`}
                             >

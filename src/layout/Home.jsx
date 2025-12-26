@@ -6,9 +6,6 @@ import Content from "../components/navbar/Content";
 import AdminSideBar from '../components/navbar/AdminSidebar'
 
 function AdminHome() {
-
-    const toggleSidebar = useSelector((state) => state.root.toggleSidebar);
-
     return (
         <div>
             <NavBar />

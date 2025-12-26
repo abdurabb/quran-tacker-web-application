@@ -62,7 +62,7 @@ function ClassAddModal({ setClose, handleSubmit, type, name, description }) {
                     {/* Buttons */}
                     <button
                         type="submit"
-                        className="w-full bg-blue-900 text-white font-medium py-2 rounded-md hover:bg-blue-800 transition-all"
+                        className="w-full bg-commonColor text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                     >
                         Submit
                     </button>

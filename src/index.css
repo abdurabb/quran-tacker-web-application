@@ -20,7 +20,10 @@
      --font-manorpe:Manrope, sans-serif; */
 
      --color-background:#EAEAEA;
-     --color-commonColor:#123F6D1A;
+     --color-commonColor:#042E60;
+     --color-commonColorButton:#042E60;
+     --color-notSelectedColor:'white';
+     
 
 }
 

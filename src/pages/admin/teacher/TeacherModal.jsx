@@ -141,7 +141,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                         <div className="flex items-center gap-3">
                             <label
                                 htmlFor="image"
-                                className="cursor-pointer bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition"
+                                className="cursor-pointer bg-commonColorButton text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-900 transition"
                             >
                                 Choose File
                             </label>
@@ -182,7 +182,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                                 <>
                                     <button
                                         type=""
-                                        className="w-full bg-blue-900 text-white font-medium py-2 rounded-md hover:bg-blue-800 transition-all"
+                                        className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                                     >
                                         Adding...
                                     </button>
@@ -192,7 +192,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                                     <>
                                         <button
                                             type="submit"
-                                            className="w-full bg-blue-900 text-white font-medium py-2 rounded-md hover:bg-blue-800 transition-all"
+                                            className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                                         >
                                             {type === 'Create' ? 'Add Teacher' : 'Update Teacher'}
                                         </button>

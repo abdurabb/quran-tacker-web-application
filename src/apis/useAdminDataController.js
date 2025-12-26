@@ -26,8 +26,6 @@ export const useLogin = () => {
   });
 };
 
-
-
 // classes
 export const useGetClasses = (page, limit, search) => {
   return useQuery({
@@ -40,13 +38,13 @@ export const useGetClasses = (page, limit, search) => {
   })
 }
 
-export const useGetAllClasses = (search) => {
+export const useGetAllClasses = (search, enabled = true) => {
   return useQuery({
     queryKey: ['getAllClasses', search],
-
     queryFn: async () => {
       return await apiService.get(`/admin/get-all-classes?search=${search}`);
     },
+    enabled: enabled,
     retry: 0,
   })
 }
@@ -123,6 +121,25 @@ export const useAssignTeacher = () => {
     retry: 0,
   });
 };
+
+export const useRemoveTeacherFromClass = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (payload) => {
+      const response = await apiService.post(
+        `/admin/remove-teacher`,
+        payload
+      );
+      return response;
+
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("");
+    },
+    retry: 0,
+  });
+};
+
 
 
 // teachers
@@ -250,12 +267,29 @@ export const useAddStudent = () => {
   });
 };
 
-export const useGetStudents = (page, limit, search) => {
+export const useGetStudents = (page, limit, search, classId = null) => {
+  let query = {
+    page: page,
+    limit: limit,
+    search: search,
+  }
+  if (classId) {
+    query.classId = classId;
+  }
   return useQuery({
-    queryKey: ['getStudents', page, limit, search],
-
+    queryKey: ['getStudents', page, limit, search, classId],
     queryFn: async () => {
-      return await apiService.get(`/admin/get-students?page=${page}&limit=${limit}&search=${search}`);
+      return await apiService.get(`/admin/get-students?${new URLSearchParams(query).toString()}`);
+    },
+    retry: 0,
+  })
+}
+
+export const useGetStudentsFilteredByClass = (search, page, limit, classId, isClass = false) => {
+  return useQuery({
+    queryKey: ['getStudentsFilteredByClass', search, page, limit, classId, isClass],
+    queryFn: async () => {
+      return await apiService.get(`/admin/get-students-filtered-by-class?search=${search}&classId=${classId}&isClass=${isClass}&page=${page}&limit=${limit}`);
     },
     retry: 0,
   })
@@ -291,6 +325,144 @@ export const useDeleteStudent = () => {
 };
 
 
+export const useAssignClassForStudents = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      const response = await apiService.post(
+        `/admin/assign-a-class-for-student`,
+        payload
+      );
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("");
+    },
+    retry: 0,
+  });
+};
+
+
+// lessons
+export const useGetLessons = (page, limit, search) => {
+  return useQuery({
+    queryKey: ['getLessons', page, limit, search],
+
+    queryFn: async () => {
+      return await apiService.get(`/admin/get-lessons?page=${page}&limit=${limit}&search=${search}`);
+    },
+    retry: 0,
+  })
+}
+
+export const useAddLesson = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      const response = await apiService.post(
+        `/admin/add-lesson`,
+        payload
+      );
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("");
+    },
+    retry: 0,
+  });
+};
+
+export const useUpdateLesson = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      const response = await apiService.post(
+        `/admin/update-lesson`,
+        payload
+      );
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("");
+    },
+    retry: 0,
+  });
+};
+
+export const useDeleteLesson = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      const response = await apiService.post(
+        `/admin/delete-lesson`,
+        payload
+      );
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("");
+    },
+    retry: 0,
+  });
+};
+
+// lesson types
+export const useGetLessonTypes = () => {
+  return useQuery({
+    queryKey: ['getLessonTypes'],
+    queryFn: async () => {
+      return await apiService.get(`/admin/get-lesson-types`);
+    },
+    retry: 0,
+  })
+}
+
+export const useAddLessonType = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      return await apiService.post(`/admin/add-lesson-type`, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getLessonTypes']);
+    },
+    retry: 0,
+  })
+}
+
+
+export const useUpdateLessonType = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      return await apiService.post(`/admin/update-lesson-type`, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getLessonTypes']);
+    },
+    retry: 0,
+  })
+}
+
+export const useDeleteLessonType = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload) => {
+      return await apiService.post(`/admin/delete-lesson-type`, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['getLessonTypes']);
+    },
+    retry: 0,
+  })
+}
 
 // image uploading
 export const useImageUpload = () => {
@@ -330,4 +502,91 @@ export const useImageUpload = () => {
     uploadProgress,
     resetProgress: () => setUploadProgress(0),
   };
+};
+
+
+// reports
+export const useGetDailyReports = (startDate, endDate, classId, page, limit, search, sort) => {
+  return useQuery({
+    queryKey: ['getDailyReports', startDate, endDate, classId, page, limit, search, sort],
+    queryFn: async () => {
+      let url = `/admin/get-daily-reports`;
+      const params = new URLSearchParams();
+      if (startDate) params.append('startDate', startDate);
+      if (endDate) params.append('endDate', endDate);
+      if (classId) params.append('classId', classId);
+      if (page) params.append('page', page);
+      if (limit) params.append('limit', limit);
+      if (search) params.append('search', search);
+      if (sort !== undefined && sort !== null && sort !== '' && sort !== 1) params.append('sortByLow', true);
+      if (params.toString()) url += `?${params.toString()}`;
+      return await apiService.get(url);
+    },
+    retry: 0,
+  });
+};
+
+export const useGetTopStudents = (startDate, endDate, count) => {
+  return useQuery({
+    queryKey: ['getTopStudents', startDate, endDate, count],
+    queryFn: async () => {
+      return await apiService.get(`/admin/get-top-students?startDate=${startDate}&endDate=${endDate}&count=${count}`);
+    },
+    retry: 0,
+  });
+};
+
+// get student report details
+export const useGetStudentReportDetails = (studentId, startDate, endDate, page, limit) => {
+  return useQuery({
+    queryKey: ['getStudentReportDetails', studentId, startDate, endDate, page, limit],
+    queryFn: async () => {
+      let url = `/admin/get-student-report-details?studentId=${studentId}`;
+      const params = new URLSearchParams();
+      if (startDate) params.append('startDate', startDate);
+      if (endDate) params.append('endDate', endDate);
+      if (page) params.append('page', page);
+      if (limit) params.append('limit', limit);
+      if (params.toString()) url += `&${params.toString()}`;
+      return await apiService.get(url);
+    },
+    retry: 0,
+    enabled: !!studentId,
+  });
+};
+
+// attendance
+export const useGetAttendance = ({ classId, date, page, limit }) => {
+  return useQuery({
+    queryKey: ['getAttendance', classId, date, page, limit],
+    enabled: !!classId,
+    queryFn: async () => {
+      let url = `/admin/get-attendance`;
+      const params = new URLSearchParams();
+
+      params.append('classId', classId); // safe now
+      if (date) params.append('date', date);
+      if (page) params.append('page', page);
+      if (limit) params.append('limit', limit);
+
+      url += `?${params.toString()}`;
+      return await apiService.get(url);
+    },
+    retry: 0,
+  });
+};
+
+
+// attendance
+export const useGetDashboardData = () => {
+  return useQuery({
+    queryKey: ['getDashboardData',],
+    queryFn: async () => {
+      let url = `/admin/get-dashboard-data`;
+      // const params = new URLSearchParams();
+      // url += `?${params.toString()}`;
+      return await apiService.get(url);
+    },
+    retry: 0,
+  });
 };

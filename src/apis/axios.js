@@ -5,7 +5,8 @@ const customNavigate = (path) => {
   window.location.href = path;
 };
 
-const BASE_URL = "http://localhost:8686/";
+// const BASE_URL = "http://localhost:8686/";
+const BASE_URL = "https://quran-tracker-server-1.onrender.com";
 
 //192.168.29.22
 export const api = axios.create({

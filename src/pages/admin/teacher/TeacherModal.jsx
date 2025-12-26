@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { format, parseISO } from "date-fns";
+import { Calendar } from 'lucide-react';
 
 function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
-    const [isAdding, setIsAdding] = useState(false)
+    const [isAdding, setIsAdding] = useState(false);
     const [form, setForm] = useState({
         name: '',
         image: '',
@@ -23,13 +23,26 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
-    const formatDate = (date) => {
-        if (!date) return "";
-        return format(parseISO(date), "dd/MM/yyyy"); // dd/MM/yyyy format
+    // Convert YYYY-MM-DD to DD/MM/YYYY for display
+    const formatDateForDisplay = (dateString) => {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
     };
+
+    // Convert YYYY-MM-DD from backend to input format
+    const formatDateForInput = (dateString) => {
+        if (!dateString) return '';
+        // Handle ISO format or YYYY-MM-DD
+        return dateString.slice(0, 10);
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
-        setIsAdding(true)
+        setIsAdding(true);
         handleSubmit(form, setIsAdding, teacher?._id);
     };
 
@@ -41,9 +54,9 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                 email: teacher.email || '',
                 password: teacher.password || '',
                 qualification: teacher.qualification || '',
-                dob: teacher.dob ? teacher.dob.slice(0, 10) : '',
-                joiningDate: teacher.joiningDate ? teacher.joiningDate.slice(0, 10) : '',
-                dialCode: teacher.dialCode || '',
+                dob: formatDateForInput(teacher.dob),
+                joiningDate: formatDateForInput(teacher.joiningDate),
+                dialCode: teacher.dialCode || '+91',
                 phone: teacher.phone || '',
                 address: teacher.address || '',
                 gender: teacher.gender || '',
@@ -57,14 +70,13 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
             <div className="p-6">
                 <h2 className="text-xl font-semibold text-[#1D2939] mb-4">{type} Teacher</h2>
                 <hr className="mb-6 border-t border-gray-200" />
-                <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                     {[
                         { label: 'Name', name: 'name' },
-                        { label: 'Email', name: 'email' },
+                        { label: 'Email', name: 'email', type: 'email' },
                         { label: 'Password', name: 'password', type: 'password' },
                         { label: 'Qualification', name: 'qualification' },
-                        // { label: 'Dial Code', name: 'dialCode' },
-                        { label: 'Phone', name: 'phone' },
+                        { label: 'Phone', name: 'phone', type: 'Number' },
                         { label: 'Address', name: 'address' },
                         { label: 'Experience (Years)', name: 'experience', type: 'number' },
                     ].map(({ label, name, type = 'text' }) => (
@@ -76,8 +88,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                                 type={type}
                                 id={name}
                                 name={name}
-                                disabled={name === 'dialCode'}
-                                value={name === 'dialCode' ? form.dialCode : form[name]}
+                                value={form[name]}
                                 onChange={handleChange}
                                 required={name !== 'image'}
                                 placeholder={label}
@@ -111,16 +122,30 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                         <label htmlFor="dob" className="block text-sm font-medium text-gray-700 mb-1">
                             Date of Birth
                         </label>
-                        <input
-                            type="date"
-                            id="dob"
-                            name="dob"
-                            // value={form.dob}
-                            value={formatDate(form.dob)}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        />
+                        <div className="relative">
+                            <input
+                                type="date"
+                                id="dob"
+                                name="dob"
+                                value={form.dob}
+                                onChange={handleChange}
+                                required
+                                max={new Date().toISOString().split('T')[0]}
+                                className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none"
+                                style={{
+                                    colorScheme: 'light'
+                                }}
+                            />
+                            <Calendar 
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" 
+                                size={18} 
+                            />
+                        </div>
+                        {form.dob && (
+                            <p className="text-xs text-gray-500 mt-1">
+                                Selected: {formatDateForDisplay(form.dob)}
+                            </p>
+                        )}
                     </div>
 
                     {/* Joining Date */}
@@ -128,16 +153,30 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                         <label htmlFor="joiningDate" className="block text-sm font-medium text-gray-700 mb-1">
                             Joining Date
                         </label>
-                        <input
-                            type="date"
-                            id="joiningDate"
-                            name="joiningDate"
-                            // value={form.joiningDate}
-                            value={formatDate(form.joiningDate)}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        />
+                        <div className="relative">
+                            <input
+                                type="date"
+                                id="joiningDate"
+                                name="joiningDate"
+                                value={form.joiningDate}
+                                onChange={handleChange}
+                                required
+                                max={new Date().toISOString().split('T')[0]}
+                                className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none"
+                                style={{
+                                    colorScheme: 'light'
+                                }}
+                            />
+                            <Calendar 
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" 
+                                size={18} 
+                            />
+                        </div>
+                        {form.joiningDate && (
+                            <p className="text-xs text-gray-500 mt-1">
+                                Selected: {formatDateForDisplay(form.joiningDate)}
+                            </p>
+                        )}
                     </div>
 
                     {/* Image (Optional) */}
@@ -149,7 +188,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                         <div className="flex items-center gap-3">
                             <label
                                 htmlFor="image"
-                                className="cursor-pointer bg-commonColorButton text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-900 transition"
+                                className="cursor-pointer bg-commonColorButton text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition"
                             >
                                 Choose File
                             </label>
@@ -182,39 +221,39 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                         )}
                     </div>
 
-
                     {/* Buttons */}
                     <div className="md:col-span-2 mt-4">
-                        {
-                            isAdding ? (
-                                <>
-                                    <button
-                                        type=""
-                                        className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
-                                    >
-                                        Adding...
-                                    </button>
-                                </>
-                            ) :
-                                (
-                                    <div className='flex flex-col md:flex-row gap-3 '>
-                                        <button
-                                            onClick={setClose}
-                                            className="w-full  md:w-1/2 bg-gray-200  text-black font-medium py-2 rounded-md hover:bg-gray-300 transition-all"
-                                        >
-                                            {'Cancel'}
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            className="w-full  md:w-1/2 bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
-                                        >
-                                            {type === 'Create' ? 'Add Teacher' : 'Update Teacher'}
-                                        </button>
-                                    </div>
-                                )
-                        }
+                        {isAdding ? (
+                            <button
+                                type="button"
+                                disabled
+                                className="w-full bg-blue-400 text-white font-medium py-2 rounded-md cursor-not-allowed"
+                            >
+                                Adding...
+                            </button>
+                        ) : (
+                            <div className="flex flex-col md:flex-row gap-3">
+                                <button
+                                    type="button"
+                                    onClick={setClose}
+                                    className="w-full md:w-1/2 bg-gray-200 text-black font-medium py-2 rounded-md hover:bg-gray-300 transition-all"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        onSubmit(e);
+                                    }}
+                                    className="w-full md:w-1/2 bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-700 transition-all"
+                                >
+                                    {type === 'Create' ? 'Add Teacher' : 'Update Teacher'}
+                                </button>
+                            </div>
+                        )}
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );

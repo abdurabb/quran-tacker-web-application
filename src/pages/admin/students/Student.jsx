@@ -33,6 +33,10 @@ function Students() {
   }
   const handleSubmit = (form, setIsAdding) => {
     const file = form?.image
+    if (form?.phone?.length !== 10) {
+      toast.error("Phone number must be 10 digits");
+      return;
+    }
     if (!file) {
       mutate(form, {
         onSuccess: (data) => {

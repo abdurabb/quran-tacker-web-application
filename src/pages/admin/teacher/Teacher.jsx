@@ -28,7 +28,10 @@ function Teacher() {
   }
   const handleSubmit = (form, setIsAdding) => {
     const file = form?.image
-
+    if (form?.phone?.length !== 10) {
+      toast.error("Phone number must be 10 digits");
+      return;
+    }
     if (!file) {
       setIsAdding(true);
       mutate(form, {
@@ -91,14 +94,23 @@ function Teacher() {
             onChange={(e) => setSearch(e.target.value)}
           />
           <button
-            onClick={() => {
-              setOpenAddModal(true)
-            }}
-
-            className="bg-commonColorButton text-white px-4 py-2 rounded hover:bg-blue-900"
+            onClick={() => setOpenAddModal(true)}
+            className="
+    bg-commonColorButton 
+    text-white 
+    px-3 sm:px-4 
+    py-2 sm:py-2.5 
+    text-sm sm:text-base 
+    rounded 
+    hover:bg-blue-900 
+    transition 
+    duration-200 
+    w-full sm:w-auto
+  "
           >
-            + Add  Teacher
+            + Add Teacher
           </button>
+
         </div>
       </div>
 

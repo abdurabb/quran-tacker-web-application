@@ -10,7 +10,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
         qualification: '',
         dob: '',
         joiningDate: '',
-        dialCode: '',
+        dialCode: '+91',
         phone: '',
         address: '',
         gender: '',
@@ -25,7 +25,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
     const onSubmit = (e) => {
         e.preventDefault();
         setIsAdding(true)
-        handleSubmit(form,setIsAdding, teacher?._id);
+        handleSubmit(form, setIsAdding, teacher?._id);
     };
 
     useEffect(() => {
@@ -58,7 +58,7 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                         { label: 'Email', name: 'email' },
                         { label: 'Password', name: 'password', type: 'password' },
                         { label: 'Qualification', name: 'qualification' },
-                        { label: 'Dial Code', name: 'dialCode' },
+                        // { label: 'Dial Code', name: 'dialCode' },
                         { label: 'Phone', name: 'phone' },
                         { label: 'Address', name: 'address' },
                         { label: 'Experience (Years)', name: 'experience', type: 'number' },
@@ -71,7 +71,8 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                                 type={type}
                                 id={name}
                                 name={name}
-                                value={form[name]}
+                                disabled={name === 'dialCode'}
+                                value={name === 'dialCode' ? form.dialCode : form[name]}
                                 onChange={handleChange}
                                 required={name !== 'image'}
                                 placeholder={label}
@@ -189,14 +190,20 @@ function TeacherModal({ setClose, handleSubmit, type, teacher = {} }) {
                                 </>
                             ) :
                                 (
-                                    <>
+                                    <div className='flex flex-col md:flex-row gap-3 '>
+                                        <button
+                                            onClick={setClose}
+                                            className="w-full  md:w-1/2 bg-gray-200  text-black font-medium py-2 rounded-md hover:bg-gray-300 transition-all"
+                                        >
+                                            {'Cancel'}
+                                        </button>
                                         <button
                                             type="submit"
-                                            className="w-full bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
+                                            className="w-full  md:w-1/2 bg-commonColorButton text-white font-medium py-2 rounded-md hover:bg-blue-900 transition-all"
                                         >
                                             {type === 'Create' ? 'Add Teacher' : 'Update Teacher'}
                                         </button>
-                                    </>
+                                    </div>
                                 )
                         }
                     </div>

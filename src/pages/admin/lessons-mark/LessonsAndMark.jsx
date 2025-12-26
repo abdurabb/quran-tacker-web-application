@@ -243,7 +243,7 @@ function LessonsAndMark() {
                         {lesson?.name}
                       </h3>
                       <p className="text-xs text-gray-500 mt-1">
-                        {lesson?.criteriaNumber} {lesson?.lessonType?.name || 'N/A'}
+                        {lesson?.criteriaNumber} {lesson?.lessonType?.name || '-'}
                       </p>
                     </div>
 

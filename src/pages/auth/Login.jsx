@@ -38,8 +38,9 @@ function Login() {
     }, [data, error]);
 
     return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-[url('/path/to/your/bg-image.png')] bg-cover bg-center font-urbanist relative">
-            <div className="w-max-w-md  md p-14 bg-white rounded-xl shadow-lg z-10">
+        <div className="min-h-screen w-full flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&h=600&fit=crop
+')] bg-cover bg-center font-urbanist relative">
+            <div className="w-max-w-md p-4 md:p-14  bg-white rounded-xl shadow-lg z-10">
 
 
                 <div className="w-full max-w-2xl"> {/* Adjust max-w-* as needed */}
@@ -50,26 +51,7 @@ function Login() {
                         Please enter your Details Below
                     </p>
                 </div>
-                <button
-                    onClick={() => navigate("/")}
-                    className="absolute top-4 left-4 flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-green-600 transition z-20"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3 9.75 12 3l9 6.75M4.5 10.5V19.5A1.5 1.5 0 0 0 6 21h4.5v-4.5A1.5 1.5 0 0 1 12 15h0a1.5 1.5 0 0 1 1.5 1.5V21H18a1.5 1.5 0 0 0 1.5-1.5V10.5"
-                        />
-                    </svg>
-                    Back to Home
-                </button>
+
 
 
 
@@ -150,6 +132,14 @@ function Login() {
                     className="w-full mt-4 bg-[#0B2B6C] text-white font-medium py-2 rounded-md hover:bg-[#0a265e] transition-all duration-200"
                 >
                     {isPending ? 'Loading...' : 'Sign In'}
+                </button>
+
+                {/* cancel button */}
+                <button
+                    onClick={() => {navigate('/')}}
+                    className="w-full mt-4 bg-gray-200 text-black font-medium py-2 rounded-md hover:bg-bg-gray-400 transition-all duration-200"
+                >
+                    {'Cancel'}
                 </button>
             </div>
         </div>

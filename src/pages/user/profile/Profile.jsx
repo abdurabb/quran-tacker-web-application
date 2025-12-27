@@ -7,7 +7,8 @@ import {
   Trophy,
   Mail,
   Phone,
-  MapPin
+  MapPin,
+  UserCircle ,
 } from 'lucide-react';
 
 import Attendance from './Attendance';
@@ -58,11 +59,17 @@ function Profile() {
       {/* Header */}
       <div className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 py-6 flex items-center gap-4">
-          <img
-            src={user?.image}
-            alt={user?.name}
-            className="w-16 h-16 rounded-full object-cover border-4 border-green-500"
-          />
+          {
+            user?.image ? (
+              <img
+                src={user?.image}
+                alt={user?.name}
+                className="w-16 h-16 rounded-full object-cover border-4 border-green-500"
+              />
+            ) : (
+              <UserCircle className="w-16 h-16 text-gray-400" />
+            )
+          }
           <div>
             <h1 className="text-2xl font-bold text-gray-800">{user?.name}</h1>
             <p className="text-gray-600 capitalize">

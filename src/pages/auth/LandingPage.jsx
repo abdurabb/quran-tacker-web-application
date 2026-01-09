@@ -95,7 +95,7 @@ function CollegeWebsite() {
             className="absolute inset-0 w-full h-full mx-auto object-cover"
             // style={{ transform: 'scale(0.85)' }}
           >
-            <source src="/vidBnr.m4v" type="video/mp4" />
+            <source src="/vidBnr.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 

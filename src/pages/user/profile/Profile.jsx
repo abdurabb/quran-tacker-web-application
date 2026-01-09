@@ -16,7 +16,7 @@ import Class from './Class';
 import Reports from './Reports';
 import Toppers from './Toppers';
 import { useGetProfile } from '../../../apis/useUserDataController';
-
+import Qiraath from './Qiraath';
 function Profile() {
 
   const [activeTab, setActiveTab] = useState('profile');
@@ -28,7 +28,8 @@ function Profile() {
     { id: 'attendance', icon: Calendar, title: 'Attendance', color: 'from-green-500 to-green-600' },
     { id: 'classes', icon: BookOpen, title: 'Classes', color: 'from-purple-500 to-purple-600' },
     { id: 'reports', icon: FileText, title: 'Reports', color: 'from-orange-500 to-orange-600' },
-    { id: 'toppers', icon: Trophy, title: 'College Toppers', color: 'from-yellow-500 to-yellow-600' }
+    { id: 'toppers', icon: Trophy, title: 'College Toppers', color: 'from-yellow-500 to-yellow-600' },
+    { id: 'qiraath', icon:Trophy , title: 'Qiraath', color: 'from-red-500 to-red-600' }
   ];
 
   useEffect(() => {
@@ -84,7 +85,7 @@ function Profile() {
   {/* Navigation */}
   <div className="
     flex gap-3 overflow-x-auto pb-3
-    md:grid md:grid-cols-5 md:gap-4 md:overflow-visible
+    md:grid md:grid-cols-6 md:gap-4 md:overflow-visible
     mb-6
   ">
     {navigationCards.map((card) => {
@@ -163,6 +164,7 @@ function Profile() {
     {activeTab === 'classes' && <Class />}
     {activeTab === 'reports' && <Reports />}
     {activeTab === 'toppers' && <Toppers />}
+    {activeTab === 'qiraath' && <Qiraath />}
   </div>
 </div>
 
@@ -189,3 +191,7 @@ const DetailCard = ({ label, value }) => (
 );
 
 export default Profile;
+
+
+
+

@@ -29,14 +29,14 @@ function UserNavbar() {
     return (
         <>
             {/* Top Header Bar */}
-            <div className="bg-green-600 text-white py-2 px-4 text-sm hidden md:block">
+            <div className="text-white py-2 px-4 text-sm hidden md:block" style={{ backgroundColor: '#0B2B6C' }}>
                 <div className="max-w-7xl mx-auto flex justify-between   flex-wrap gap-2">
                     <div className="flex items-center gap-4">
                         <span className="flex items-center gap-1">
-                            <Phone size={14} /> +1 (555) 123-4567
+                            <Phone size={14} /> +91 7909199591
                         </span>
                         <span className="flex items-center gap-1">
-                            <Mail size={14} /> info@greenvalley.edu
+                            <Mail size={14} /> info@schoolofquran.edu
                         </span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -53,12 +53,12 @@ function UserNavbar() {
                 <div className="max-w-7xl mx-auto px-4 py-4">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                GV
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl overflow-hidden" style={{ backgroundColor: '#0B2B6C' }}>
+                                <img src="/qaflogo.jpg" alt="logo" className="w-full h-full object-cover" />
                             </div>
                             <div>
-                                <h1 className="text-xl font-bold text-green-700">Qaf Institute</h1>
-                                <p className="text-xs text-gray-600">Excellence in Education</p>
+                                <h1 className="text-xl font-bold" style={{ color: '#0B2B6C' }}>Qaf International Campus</h1>
+                                <p className="text-xs text-gray-600">READ. LEARN. EVOLVE</p>
                             </div>
                         </div>
 
@@ -68,16 +68,16 @@ function UserNavbar() {
                                 onClick={() => {
                                     navigate('/')
                                 }}
-                                className="text-gray-700 hover:text-green-600 font-medium transition">Home</button>
-                            <a href="#about" className="text-gray-700 hover:text-green-600 font-medium transition">About</a>
-                            <a href="#courses" className="text-gray-700 hover:text-green-600 font-medium transition">Courses</a>
-                            <a href="#admissions" className="text-gray-700 hover:text-green-600 font-medium transition">Admissions</a>
-                            <a href="#contact" className="text-gray-700 hover:text-green-600 font-medium transition">Contact</a>
+                                className="text-gray-700 font-medium transition" style={{ '--hover-color': '#0B2B6C' }} onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Home</button>
+                            <a href="#about" className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>About</a>
+                            <a href="#courses" className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Courses</a>
+                            <a href="#admissions" className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Admissions</a>
+                            <a href="#contact" className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Contact</a>
                             {
                                 isLoggedIn && role === 'user' && (
                                     <button onClick={() => {
                                         navigate('/user-profile')
-                                    }} className="text-gray-700 hover:text-green-600 font-medium transition">Profile</button>
+                                    }} className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Profile</button>
                                 )
                             }
 
@@ -87,7 +87,7 @@ function UserNavbar() {
                                         onClick={() => {
                                             navigate(`/${role}-home`)
                                         }}
-                                        href="#admin-home" className="text-gray-700 hover:text-green-600 font-medium transition">Go to Portal</button>
+                                        href="#admin-home" className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Go to Portal</button>
                                 )
                             }
 
@@ -95,7 +95,10 @@ function UserNavbar() {
                                 onClick={() => {
                                     handleLogin()
                                 }}
-                                className="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition font-medium"
+                                className="text-white px-5 py-2 rounded-full transition font-medium"
+                                style={{ backgroundColor: '#0B2B6C' }}
+                                onMouseEnter={(e) => e.target.style.backgroundColor = '#0a2458'}
+                                onMouseLeave={(e) => e.target.style.backgroundColor = '#0B2B6C'}
                             >
                                 {isLoggedIn ? 'Logout' : 'Login'}
                             </button>
@@ -115,16 +118,16 @@ function UserNavbar() {
                         <div className="md:hidden mt-4 pb-4 space-y-3">
                             <button onClick={() => {
                                 navigate('/')
-                            }} className="block text-gray-700 hover:text-green-600 font-medium">Home</button>
-                            <a href="#about" className="block text-gray-700 hover:text-green-600 font-medium">About</a>
-                            <a href="#courses" className="block text-gray-700 hover:text-green-600 font-medium">Courses</a>
-                            <a href="#admissions" className="block text-gray-700 hover:text-green-600 font-medium">Admissions</a>
-                            <a href="#contact" className="block text-gray-700 hover:text-green-600 font-medium">Contact</a>
+                            }} className="block text-gray-700 font-medium" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Home</button>
+                            <a href="#about" className="block text-gray-700 font-medium" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>About</a>
+                            <a href="#courses" className="block text-gray-700 font-medium" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Courses</a>
+                            <a href="#admissions" className="block text-gray-700 font-medium" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Admissions</a>
+                            <a href="#contact" className="block text-gray-700 font-medium" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Contact</a>
                             {
                                 isLoggedIn && role === 'user' && (
                                     <button onClick={() => {
                                         navigate('/user-profile')
-                                    }} className="text-gray-700 hover:text-green-600 font-medium transition">Profile</button>
+                                    }} className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Profile</button>
                                 )
                             }
 
@@ -134,14 +137,17 @@ function UserNavbar() {
                                         onClick={() => {
                                             navigate(`/${role}-home`)
                                         }}
-                                        href="#admin-home" className="text-gray-700 hover:text-green-600 font-medium transition">Go to Portal</button>
+                                        href="#admin-home" className="text-gray-700 font-medium transition" onMouseEnter={(e) => e.target.style.color = '#0B2B6C'} onMouseLeave={(e) => e.target.style.color = '#374151'}>Go to Portal</button>
                                 )
                             }
                             <button
                                 onClick={() => {
                                     handleLogin()
                                 }}
-                                className="w-full bg-green-600 text-white px-5 py-2 mt-3 rounded-full hover:bg-green-700 transition font-medium"
+                                className="w-full text-white px-5 py-2 mt-3 rounded-full transition font-medium"
+                                style={{ backgroundColor: '#0B2B6C' }}
+                                onMouseEnter={(e) => e.target.style.backgroundColor = '#0a2458'}
+                                onMouseLeave={(e) => e.target.style.backgroundColor = '#0B2B6C'}
                             >
                                 {isLoggedIn ? 'Logout' : 'Login'}
                             </button>
@@ -153,14 +159,17 @@ function UserNavbar() {
                 {
                     window.location.pathname === '/' && (
                         <>
-                            <div className="bg-green-50 border-t border-green-100">
+                            <div className="border-t" style={{ backgroundColor: '#E6F0FF', borderColor: '#B3D9FF' }}>
                                 <div className="max-w-7xl mx-auto px-4 py-3 overflow-hidden">
                                     <div className="flex items-center gap-6 animate-scroll">
                                         {quickLinks.concat(quickLinks).map((link, idx) => (
                                             <a
                                                 key={idx}
                                                 href="#"
-                                                className="whitespace-nowrap text-sm font-medium text-green-700 hover:text-green-900 transition"
+                                                className="whitespace-nowrap text-sm font-medium transition"
+                                                style={{ color: '#0B2B6C' }}
+                                                onMouseEnter={(e) => e.target.style.color = '#0a2458'}
+                                                onMouseLeave={(e) => e.target.style.color = '#0B2B6C'}
                                             >
                                                 {link}
                                             </a>

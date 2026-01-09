@@ -84,9 +84,38 @@ function CollegeWebsite() {
     <div className="min-h-screen bg-white">
       <UserNavbar />
       <main>
-        {/* Banner Carousel */}
-        <div className="relative h-96 md:h-[500px] overflow-hidden" id="home">
-          {banners.map((banner, idx) => (
+        {/* Banner Video Section */}
+        <div className="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden" id="home">
+          {/* Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full mx-auto object-cover"
+            // style={{ transform: 'scale(0.85)' }}
+          >
+            <source src="/vidBnr.m4v" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Overlay with Content */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60 flex items-center justify-center z-10">
+            <div className="text-center text-white px-4 max-w-4xl">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg">
+                Welcome to Qaf International Campus
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 md:mb-8 drop-shadow-md">
+                READ. LEARN. EVOLVE
+              </p>
+              <p className="text-base sm:text-lg md:text-xl drop-shadow-md opacity-90">
+                Empowering Minds, Building Futures
+              </p>
+            </div>
+          </div>
+
+          {/* Commented Banner Carousel Code */}
+          {/* {banners.map((banner, idx) => (
             <a
               key={idx}
               href={banner.link}
@@ -102,18 +131,13 @@ function CollegeWebsite() {
                 <div className="text-center text-white px-4">
                   <h2 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">{banner.title}</h2>
                   <p className="text-xl md:text-2xl mb-8 drop-shadow-md">{banner.subtitle}</p>
-                  {/* <button
-                    onClick={(e) => e.stopPropagation()}
-                    className="bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition text-lg shadow-lg"
-                  >
-                    Apply Now
-                  </button> */}
                 </div>
               </div>
             </a>
-          ))}
+          ))} */}
 
-          <button
+          {/* Commented Navigation Buttons */}
+          {/* <button
             onClick={prevBanner}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition z-20 backdrop-blur-sm"
           >
@@ -135,13 +159,13 @@ function CollegeWebsite() {
                   }`}
               />
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Courses Section */}
-        <section className="py-16 bg-gradient-to-b from-white to-green-50" id="courses">
+        <section className="py-16 bg-gradient-to-b from-white" style={{ backgroundImage: 'linear-gradient(to bottom, white, #E6F0FF)' }} id="courses">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center text-green-700 mb-12">Our Courses</h2>
+            <h2 className="text-4xl font-bold text-center mb-12" style={{ color: '#0B2B6C' }}>Our Courses</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {courses.map((course, idx) => (
                 <div
@@ -153,7 +177,7 @@ function CollegeWebsite() {
                   <p className="text-gray-600 text-center mb-4">
                     Comprehensive programs designed to prepare you for a successful career.
                   </p>
-                  <button className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition font-medium">
+                  <button className="w-full text-white py-2 rounded-lg transition font-medium" style={{ backgroundColor: '#0B2B6C' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#0a2458'} onMouseLeave={(e) => e.target.style.backgroundColor = '#0B2B6C'}>
                     Learn More
                   </button>
                 </div>
@@ -167,7 +191,7 @@ function CollegeWebsite() {
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-green-700 mb-6">About Qaf Institute</h2>
+                <h2 className="text-4xl font-bold mb-6" style={{ color: '#0B2B6C' }}>About Qaf Institute</h2>
                 <p className="text-gray-700 mb-4 leading-relaxed">
                   Established in 2007, Ainul Maarif College has been at the forefront of academic excellence
                   and innovation. We are committed to providing world-class education that prepares students
@@ -178,16 +202,16 @@ function CollegeWebsite() {
                   an environment where students can thrive academically, socially, and personally.
                 </p>
                 <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="bg-green-50 p-4 rounded-lg">
-                    <div className="text-3xl font-bold text-green-600">15K+</div>
+                  <div className="p-4 rounded-lg" style={{ backgroundColor: '#E6F0FF' }}>
+                    <div className="text-3xl font-bold" style={{ color: '#0B2B6C' }}>15K+</div>
                     <div className="text-sm text-gray-600">Students</div>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
-                    <div className="text-3xl font-bold text-green-600">500+</div>
+                  <div className="p-4 rounded-lg" style={{ backgroundColor: '#E6F0FF' }}>
+                    <div className="text-3xl font-bold" style={{ color: '#0B2B6C' }}>500+</div>
                     <div className="text-sm text-gray-600">Faculty</div>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
-                    <div className="text-3xl font-bold text-green-600">100+</div>
+                  <div className="p-4 rounded-lg" style={{ backgroundColor: '#E6F0FF' }}>
+                    <div className="text-3xl font-bold" style={{ color: '#0B2B6C' }}>100+</div>
                     <div className="text-sm text-gray-600">Programs</div>
                   </div>
                 </div>
@@ -204,10 +228,10 @@ function CollegeWebsite() {
         </section>
 
         {/* Organizations Section - ASF & AMIS */}
-        <section className="py-16 bg-gradient-to-br from-green-50 to-white" id="organizations">
+        <section className="py-16 bg-gradient-to-br to-white" style={{ backgroundImage: 'linear-gradient(to bottom right, #E6F0FF, white)' }} id="organizations">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-green-700 mb-4">Our Organizations</h2>
+              <h2 className="text-4xl font-bold mb-4" style={{ color: '#0B2B6C' }}>Our Organizations</h2>
               <p className="text-gray-600 text-lg">Building Community, Inspiring Excellence</p>
             </div>
 
@@ -228,7 +252,7 @@ function CollegeWebsite() {
                             alt={org.name}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 to-green-600/60 flex items-center justify-center">
+                          <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(to right, rgba(11, 43, 108, 0.8), rgba(11, 43, 108, 0.6))' }}>
                             <div className="text-center text-white px-4">
                               <div className="text-6xl mb-4">{org.icon}</div>
                               <h3 className="text-3xl font-bold">{org.name}</h3>
@@ -243,18 +267,18 @@ function CollegeWebsite() {
                           </p>
 
                           <div className="space-y-3 mb-6">
-                            <h4 className="font-semibold text-green-700 text-lg">Key Activities:</h4>
+                            <h4 className="font-semibold text-lg" style={{ color: '#0B2B6C' }}>Key Activities:</h4>
                             <div className="grid grid-cols-2 gap-3">
                               {org.activities.map((activity, i) => (
                                 <div key={i} className="flex items-center gap-2 text-gray-700">
-                                  <span className="text-green-500">✓</span>
+                                  <span style={{ color: '#0B2B6C' }}>✓</span>
                                   <span className="text-sm">{activity}</span>
                                 </div>
                               ))}
                             </div>
                           </div>
 
-                          <button className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold shadow-lg w-full md:w-auto">
+                          <button className="text-white px-6 py-3 rounded-lg transition font-semibold shadow-lg w-full md:w-auto" style={{ backgroundColor: '#0B2B6C' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#0a2458'} onMouseLeave={(e) => e.target.style.backgroundColor = '#0B2B6C'}>
                             Learn More & Join
                           </button>
                         </div>
@@ -270,10 +294,20 @@ function CollegeWebsite() {
                   <button
                     key={idx}
                     onClick={() => setCurrentOrg(idx)}
-                    className={`transition-all ${idx === currentOrg
-                      ? 'w-12 h-3 bg-green-600 rounded-full'
-                      : 'w-3 h-3 bg-green-300 rounded-full hover:bg-green-400'
+                    className={`transition-all rounded-full ${idx === currentOrg
+                      ? 'w-12 h-3'
+                      : 'w-3 h-3'
                       }`}
+                    style={idx === currentOrg 
+                      ? { backgroundColor: '#0B2B6C' }
+                      : { backgroundColor: '#B3D9FF' }
+                    }
+                    onMouseEnter={(e) => {
+                      if (idx !== currentOrg) e.target.style.backgroundColor = '#80C0FF';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (idx !== currentOrg) e.target.style.backgroundColor = '#B3D9FF';
+                    }}
                   />
                 ))}
               </div>
@@ -282,22 +316,22 @@ function CollegeWebsite() {
         </section>
 
         {/* Contact Section */}
-        <section className="py-16 bg-green-50" id="contact">
+        <section className="py-16" style={{ backgroundColor: '#E6F0FF' }} id="contact">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center text-green-700 mb-12">Contact Us</h2>
+            <h2 className="text-4xl font-bold text-center mb-12" style={{ color: '#0B2B6C' }}>Contact Us</h2>
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-6">Get in Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <MapPin className="text-green-600 mt-1" size={20} />
+                    <MapPin className="mt-1" size={20} style={{ color: '#0B2B6C' }} />
                     <div>
                       <h4 className="font-semibold text-gray-800">Address</h4>
                       <p className="text-gray-600">Kannur - Kerala - India</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Phone className="text-green-600 mt-1" size={20} />
+                    <Phone className="mt-1" size={20} style={{ color: '#0B2B6C' }} />
                     <div>
                       <h4 className="font-semibold text-gray-800">Phone</h4>
                       <p className="text-gray-600">+91 7909199591</p>
@@ -305,7 +339,7 @@ function CollegeWebsite() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Mail className="text-green-600 mt-1" size={20} />
+                    <Mail className="mt-1" size={20} style={{ color: '#0B2B6C' }} />
                     <div>
                       <h4 className="font-semibold text-gray-800">Email</h4>
                       <p className="text-gray-600">info@maarif.com</p>
@@ -320,24 +354,34 @@ function CollegeWebsite() {
                   <input
                     type="text"
                     placeholder="Your Name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none"
+                    style={{ '--tw-ring-color': '#0B2B6C' }}
+                    onFocus={(e) => e.target.style.borderColor = '#0B2B6C'}
+                    onBlur={(e) => e.target.style.borderColor = '#D1D5DB'}
                   />
                   <input
                     type="email"
                     placeholder="Your Email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none"
+                    onFocus={(e) => e.target.style.borderColor = '#0B2B6C'}
+                    onBlur={(e) => e.target.style.borderColor = '#D1D5DB'}
                   />
                   <textarea
                     placeholder="Your Message"
                     rows="4"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none"
+                    onFocus={(e) => e.target.style.borderColor = '#0B2B6C'}
+                    onBlur={(e) => e.target.style.borderColor = '#D1D5DB'}
                   ></textarea>
                   <button
                     onClick={(e) => {
                       e.preventDefault();
                       alert('Message sent successfully!');
                     }}
-                    className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-semibold"
+                    className="w-full text-white py-3 rounded-lg transition font-semibold"
+                    style={{ backgroundColor: '#0B2B6C' }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = '#0a2458'}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = '#0B2B6C'}
                   >
                     Send Message
                   </button>

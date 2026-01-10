@@ -10,22 +10,52 @@ function CollegeWebsite() {
 
   const banners = [
     {
-      title: "Welcome to Qaf Institute",
-      subtitle: "Empowering Minds, Building Futures",
-      image: "https://www.pullman-services.com/wp-content/uploads/2018/07/iStock-497747288_University_Aerial.jpg",
-      link: "#admissions"
+      title: "Welcome to Qaf International Campus",
+      subtitle: "READ. LEARN. EVOLVE",
+      image: "/one.jpeg",
+      link: "#home"
     },
     {
-      title: "World-Class Education",
-      subtitle: "Join Our Academic Excellence Program",
-      image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1200&h=600&fit=crop",
+      title: "Excellence in Education",
+      subtitle: "Empowering Minds, Building Futures",
+      image: "/two.jpeg",
+      link: "#about"
+    },
+    {
+      title: "World-Class Learning Environment",
+      subtitle: "State-of-the-Art Facilities for Academic Success",
+      image: "/three.jpeg",
       link: "#courses"
     },
     {
-      title: "Modern Campus Facilities",
-      subtitle: "State-of-the-Art Learning Environment",
-      image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200&h=600&fit=crop",
+      title: "Comprehensive Academic Programs",
+      subtitle: "From Quran Hifz to Modern Education",
+      image: "/four.jpeg",
+      link: "#courses"
+    },
+    {
+      title: "Vibrant Campus Life",
+      subtitle: "Where Learning Meets Community",
+      image: "/five.jpeg",
+      link: "#organizations"
+    },
+    {
+      title: "Dedicated Faculty & Mentors",
+      subtitle: "Guiding Students Towards Excellence",
+      image: "/six.jpeg",
       link: "#about"
+    },
+    {
+      title: "Modern Infrastructure",
+      subtitle: "Creating the Perfect Learning Atmosphere",
+      image: "/seven.jpeg",
+      link: "#about"
+    },
+    {
+      title: "Join Our Community",
+      subtitle: "Start Your Journey of Knowledge Today",
+      image: "/eight.jpeg",
+      link: "#admissions"
     }
   ];
 
@@ -86,36 +116,8 @@ function CollegeWebsite() {
       <main>
         {/* Banner Video Section */}
         <div className="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden" id="home">
-          {/* Video Background */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full mx-auto object-cover"
-            // style={{ transform: 'scale(0.85)' }}
-          >
-            <source src="/vidBnr.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          {/* Overlay with Content */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60 flex items-center justify-center z-10">
-            <div className="text-center text-white px-4 max-w-4xl">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg">
-                Welcome to Qaf International Campus
-              </h2>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 md:mb-8 drop-shadow-md">
-                READ. LEARN. EVOLVE
-              </p>
-              <p className="text-base sm:text-lg md:text-xl drop-shadow-md opacity-90">
-                Empowering Minds, Building Futures
-              </p>
-            </div>
-          </div>
-
           {/* Commented Banner Carousel Code */}
-          {/* {banners.map((banner, idx) => (
+          {banners.map((banner, idx) => (
             <a
               key={idx}
               href={banner.link}
@@ -134,10 +136,10 @@ function CollegeWebsite() {
                 </div>
               </div>
             </a>
-          ))} */}
+          ))}
 
           {/* Commented Navigation Buttons */}
-          {/* <button
+          <button
             onClick={prevBanner}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition z-20 backdrop-blur-sm"
           >
@@ -159,7 +161,7 @@ function CollegeWebsite() {
                   }`}
               />
             ))}
-          </div> */}
+          </div>
         </div>
 
         {/* Courses Section */}

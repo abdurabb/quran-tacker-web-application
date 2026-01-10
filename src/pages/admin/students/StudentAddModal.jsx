@@ -221,7 +221,6 @@ function StudentAddModal({ setClose, handleSubmit, type, student = {} }) {
                                     )}
                                 </div>
 
-
                                 {/* Buttons */}
                                 <div className="md:col-span-2 mt-4">
                                     {

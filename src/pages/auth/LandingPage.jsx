@@ -141,13 +141,13 @@ function CollegeWebsite() {
           {/* Commented Navigation Buttons */}
           <button
             onClick={prevBanner}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition z-20 backdrop-blur-sm"
+            className=" hidden md:block absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition z-20 backdrop-blur-sm"
           >
             <ChevronLeft size={28} />
           </button>
           <button
             onClick={nextBanner}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition z-20 backdrop-blur-sm"
+            className=" hidden md:block absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition z-20 backdrop-blur-sm"
           >
             <ChevronRight size={28} />
           </button>
@@ -300,7 +300,7 @@ function CollegeWebsite() {
                       ? 'w-12 h-3'
                       : 'w-3 h-3'
                       }`}
-                    style={idx === currentOrg 
+                    style={idx === currentOrg
                       ? { backgroundColor: '#0B2B6C' }
                       : { backgroundColor: '#B3D9FF' }
                     }

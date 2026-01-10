@@ -118,9 +118,11 @@ function CollegeWebsite() {
         <div className="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden" id="home">
           {/* Commented Banner Carousel Code */}
           {banners.map((banner, idx) => (
-            <a
+            <div
+              onClick={() => {
+                nextBanner()
+              }}
               key={idx}
-              href={banner.link}
               className={`absolute inset-0 transition-all duration-1000 block ${idx === currentBanner ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
             >
@@ -135,7 +137,7 @@ function CollegeWebsite() {
                   <p className="text-xl md:text-2xl mb-8 drop-shadow-md">{banner.subtitle}</p>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
 
           {/* Commented Navigation Buttons */}
